@@ -8,13 +8,7 @@ const HTTP_METHODS = Object.freeze({
   PUT: 'PUT',
 });
 
-async function fetchData({
-  url: requestUrl,
-  method,
-  body = {},
-  params = {},
-  options = {},
-}) {
+async function fetchData({ url: requestUrl, method, body = {}, params = {}, options = {} }) {
   if (!requestUrl || !method) throw new Error('URL and Method is required');
   if (!HTTP_METHODS[method]) throw new Error('Invalid HTTP method');
 
@@ -25,7 +19,6 @@ async function fetchData({
 
   let res;
   try {
-    // eslint-disable-next-line default-case
     switch (method) {
       case HTTP_METHODS.GET:
       case HTTP_METHODS.DELETE:
@@ -34,10 +27,7 @@ async function fetchData({
       case HTTP_METHODS.POST:
       case HTTP_METHODS.PATCH:
       case HTTP_METHODS.PUT:
-        const reqBody =
-          options?.headers['Content-Type'] === 'application/json'
-            ? JSON.stringify(body)
-            : body;
+        const reqBody = options?.headers['Content-Type'] === 'application/json' ? JSON.stringify(body) : body;
         res = await fetch(url, {
           method,
           body: reqBody,
@@ -59,27 +49,15 @@ async function fetchGet(url, params, options) {
   return await fetchData({ url, method: HTTP_METHODS.GET, params, options });
 }
 
-async function fetchPost(
-  url,
-  body,
-  options = { headers: { 'Content-Type': 'application/json' } }
-) {
+async function fetchPost(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
   return await fetchData({ url, method: HTTP_METHODS.POST, body, options });
 }
 
-async function fetchPatch(
-  url,
-  body,
-  options = { headers: { 'Content-Type': 'application/json' } }
-) {
+async function fetchPatch(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
   return await fetchData({ url, method: HTTP_METHODS.PATCH, body, options });
 }
 
-async function fetchPut(
-  url,
-  body,
-  options = { headers: { 'Content-Type': 'application/json' } }
-) {
+async function fetchPut(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
   return await fetchData({ url, method: HTTP_METHODS.PUT, body, options });
 }
 

@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
-import { getProducts } from "../utils/api.js";
-import useAsync from "../hooks/useAsync.js";
-import { useViewport } from "../contexts/ViewportContext.jsx";
-import ProductCard from "./ProductCard.jsx";
-import CONSTANTS from "../constants.js";
+import { css } from '@emotion/react';
+import { useEffect, useState } from 'react';
+import { getProducts } from '../utils/api.js';
+import useAsync from '../hooks/useAsync.js';
+import { useViewport } from '../contexts/ViewportContext.jsx';
+import ProductCard from './ProductCard.jsx';
+import c from '../constants.js';
 
 const style = {
   bestProductsTitle: css`
@@ -18,7 +18,7 @@ const style = {
       color: var(--gray-900);
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       height: 43.4rem;
 
       gap: 1rem;
@@ -32,7 +32,7 @@ const style = {
     gap: 2.4rem;
     grid-template-columns: repeat(4, 1fr);
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       height: 48.2rem;
 
       grid-template-columns: 1fr;
@@ -49,8 +49,8 @@ function BestProducts() {
     async function handleLoadItem() {
       const data = await getProductsAsync({
         page: 1,
-        pageSize: CONSTANTS.BEST_ITEM_PAGE_SIZE[viewport],
-        orderBy: CONSTANTS.SORT_ORDER.FAVORITE,
+        pageSize: c.BEST_ITEM_PAGE_SIZE[viewport],
+        orderBy: c.SORT_ORDER.FAVORITE,
       });
       if (!data) return;
 
@@ -66,7 +66,7 @@ function BestProducts() {
         <h3>베스트 상품</h3>
       </div>
       <div css={style.bestProductsItems}>
-        {items.map((item) => {
+        {items.map(item => {
           return <ProductCard type="best" item={item} key={item.id} />;
         })}
       </div>

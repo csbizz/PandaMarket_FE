@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
-import TagButton from "../components/TagButton.jsx";
-import useValidation from "../hooks/useValidation.js";
-import CONSTANTS from "../constants.js";
+import { css } from '@emotion/react';
+import { useEffect, useState } from 'react';
+import TagButton from '@/src/components/TagButton.jsx';
+import useValidation from '@/src/hooks/useValidation.js';
+import c from '@/src/constants.js';
 
 const style = {
   registrationPage: css`
@@ -12,13 +12,13 @@ const style = {
     width: 100%;
     height: 83rem;
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       margin: 1.8rem auto 19.4rem auto;
       height: 80.6rem;
       padding: 0 2.4rem;
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       margin: 2.4rem auto 18.6rem auto;
       padding: 0 1.6rem;
     }
@@ -51,11 +51,11 @@ const style = {
     flex-direction: column;
     gap: 3.2rem;
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       gap: 2.4rem;
     }
   `,
-  "input-wrap": css`
+  'input-wrap': css`
     label {
       font-size: 1.8rem;
       line-height: 2.6rem;
@@ -108,68 +108,66 @@ const style = {
       margin-left: 1.6rem;
     }
   `,
-  "tag-button-wrap": css`
+  'tag-button-wrap': css`
     margin-top: 1.4rem;
   `,
 };
 
 const init = {
-  value: "",
+  value: '',
   isOK: true,
-  errMsg: "",
+  errMsg: '',
 };
 
 function RegistrationPage() {
   const validation = useValidation();
-  const [nameObj, setNameObj] = useState({ name: "name", ...init });
+  const [nameObj, setNameObj] = useState({ name: 'name', ...init });
   const [descriptionObj, setDescriptionObj] = useState({
-    name: "description",
+    name: 'description',
     ...init,
   });
-  const [priceObj, setPriceObj] = useState({ name: "price", ...init });
-  const [tagObj, setTagObj] = useState({ name: "tag", ...init });
+  const [priceObj, setPriceObj] = useState({ name: 'price', ...init });
+  const [tagObj, setTagObj] = useState({ name: 'tag', ...init });
   const [tags, setTags] = useState([]);
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const handleValidation = (e) => {
+  const handleValidation = e => {
     const name = e.target.name;
     const value = e.target.value;
     switch (name) {
-      case "name":
+      case 'name':
         return validation(name, value, setNameObj);
-      case "description":
+      case 'description':
         return validation(name, value, setDescriptionObj);
-      case "price":
+      case 'price':
         return validation(name, value, setPriceObj);
-      case "tag":
+      case 'tag':
         return validation(name, value, setTagObj);
       default:
     }
   };
-  const handleAddTag = (e) => {
-    if (e.key === "Enter") {
+  const handleAddTag = e => {
+    if (e.key === 'Enter') {
       if (!handleValidation(e)) return;
       if (tags.includes(e.target.value))
-        return setTagObj((prev) => {
-          return { ...prev, errMsg: "같은 태그가 존재합니다" };
+        return setTagObj(prev => {
+          return { ...prev, errMsg: '같은 태그가 존재합니다' };
         });
 
-      setTags((prev) => [...prev, e.target.value]);
-      setTagObj((prev) => {
-        return { ...prev, value: "" };
+      setTags(prev => [...prev, e.target.value]);
+      setTagObj(prev => {
+        return { ...prev, value: '' };
       });
     }
   };
-  const handleRemoveTag = (name) => {
-    const idx = tags.findIndex((t) => t === name);
+  const handleRemoveTag = name => {
+    const idx = tags.findIndex(t => t === name);
     const newTags = [...tags.slice(0, idx), ...tags.slice(idx + 1)];
     setTags(newTags);
   };
 
   useEffect(() => {
-    setCanSubmit(
-      nameObj.isOK && descriptionObj.isOK && priceObj.isOK && tagObj.isOK
-    );
+    setCanSubmit(nameObj.isOK && descriptionObj.isOK && priceObj.isOK && tagObj.isOK);
   }, [nameObj.isOK, descriptionObj.isOK, priceObj.isOK, tagObj.isOK]);
 
   useEffect(() => setCanSubmit(false), []); // 최초 렌더링시 등록 버튼 비활성화
@@ -179,27 +177,22 @@ function RegistrationPage() {
       <form>
         <div css={style.title}>
           <p>상품 등록하기</p>
-          <button
-            css={style.registButton}
-            className="button"
-            type="button"
-            disabled={!canSubmit}
-          >
+          <button css={style.registButton} className="button" type="button" disabled={!canSubmit}>
             등록
           </button>
         </div>
         <div css={style.info}>
-          <div css={style["input-wrap"]}>
+          <div css={style['input-wrap']}>
             <label htmlFor="name">상품명</label>
             <input
               id="name"
               name="name"
               type="text"
               placeholder="상품명을 입력해주세요"
-              className={nameObj.isOK ? "" : "error"}
+              className={nameObj.isOK ? '' : 'error'}
               value={nameObj.value}
-              onChange={(e) =>
-                setNameObj((prev) => {
+              onChange={e =>
+                setNameObj(prev => {
                   return { ...prev, value: e.target.value };
                 })
               }
@@ -207,7 +200,7 @@ function RegistrationPage() {
             />
             <p>{nameObj.errMsg}</p>
           </div>
-          <div css={style["input-wrap"]}>
+          <div css={style['input-wrap']}>
             <label htmlFor="description">상품 소개</label>
             <textarea
               id="description"
@@ -215,10 +208,10 @@ function RegistrationPage() {
               cols="30"
               rows="10"
               placeholder="상품 소개를 입력해주세요"
-              className={descriptionObj.isOK ? "" : "error"}
+              className={descriptionObj.isOK ? '' : 'error'}
               value={descriptionObj.value}
-              onChange={(e) =>
-                setDescriptionObj((prev) => {
+              onChange={e =>
+                setDescriptionObj(prev => {
                   return { ...prev, value: e.target.value };
                 })
               }
@@ -226,17 +219,17 @@ function RegistrationPage() {
             ></textarea>
             <p>{descriptionObj.errMsg}</p>
           </div>
-          <div css={style["input-wrap"]}>
+          <div css={style['input-wrap']}>
             <label htmlFor="price">판매가격</label>
             <input
               id="price"
               name="price"
               type="number"
               placeholder="판매 가격을 입력해주세요"
-              className={priceObj.isOK ? "" : "error"}
+              className={priceObj.isOK ? '' : 'error'}
               value={priceObj.value}
-              onChange={(e) =>
-                setPriceObj((prev) => {
+              onChange={e =>
+                setPriceObj(prev => {
                   return { ...prev, value: e.target.value };
                 })
               }
@@ -244,17 +237,17 @@ function RegistrationPage() {
             />
             <p>{priceObj.errMsg}</p>
           </div>
-          <div css={style["input-wrap"]}>
+          <div css={style['input-wrap']}>
             <label htmlFor="tag">태그</label>
             <input
               id="tag"
               name="tag"
               type="text"
               placeholder="태그를 입력해주세요"
-              className={tagObj.isOK ? "" : `${style.error}`}
+              className={tagObj.isOK ? '' : `${style.error}`}
               value={tagObj.value}
-              onChange={(e) =>
-                setTagObj((prev) => {
+              onChange={e =>
+                setTagObj(prev => {
                   return { ...prev, value: e.target.value };
                 })
               }
@@ -269,7 +262,7 @@ function RegistrationPage() {
               {tagObj.errMsg}
             </p>
             <div className="tag-button-wrap">
-              {tags.map((tag) => (
+              {tags.map(tag => (
                 <TagButton name={tag} key={tag} onClick={handleRemoveTag} />
               ))}
             </div>
