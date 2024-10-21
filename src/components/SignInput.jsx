@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import eyeOn from "../Image/btn_visibility_on_24px.png";
-import eyeOff from "../Image/btn_visibility_off_24px.png";
+import { css } from '@emotion/react';
 
 const style = {
   signInput: css`
@@ -57,7 +55,7 @@ function SignInput({ label, type, placeholder }) {
       <label htmlFor={`for_${type}`}>{label}</label>
       <div className="input-wrap">
         <input id={`for_${type}`} type={type} placeholder={placeholder} />
-        {type === "password" && <img src={eyeOff} alt="비밀번호 표시" />}
+        {type === 'password' && <img src="/Image/btn_visibility_on_24px.png" alt="비밀번호 표시" />}
       </div>
       <p></p>
     </div>

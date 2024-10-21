@@ -72,7 +72,7 @@ function Header() {
           중고마켓
         </Link>
       </nav>
-      <Link href="/sign/login/" css={style.loginButton} className="button">
+      <Link href="/login/" css={style.loginButton} className="button">
         로그인
       </Link>
     </header>

@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import SortOrderSelect from "./SortOrderSelect.jsx";
-import { useViewport } from "../contexts/ViewportContext.jsx";
-import searchIcon from "../Image/ic_search.svg";
-import CONSTANTS from "../constants.js";
+import { css } from '@emotion/react';
+import { useState } from 'react';
+import SortOrderSelect from './SortOrderSelect.jsx';
+import { useViewport } from '../contexts/ViewportContext.jsx';
+import c from '../constants.js';
+import Link from 'next/link';
 
 const style = {
   productOnSaleTitle: css`
@@ -23,14 +22,14 @@ const style = {
       color: var(--gray-900);
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       min-width: 69.5rem;
       max-width: calc(100vw - 4.8rem);
 
       grid-template-columns: 1fr 242px 133px 130px;
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       width: 34.4rem;
       height: 9.2rem;
 
@@ -40,7 +39,7 @@ const style = {
       row-gap: 0.8rem;
     }
   `,
-  "search-query": css`
+  'search-query': css`
     height: 4.2rem;
     width: 32.5rem;
     border-radius: 12px;
@@ -74,15 +73,15 @@ const style = {
       }
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       width: 24.2rem;
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       width: 28.8rem;
     }
   `,
-  "regist-button": css`
+  'regist-button': css`
     height: 4.2rem;
     background-color: var(--Primary-100);
     border-radius: 8px;
@@ -95,7 +94,7 @@ const style = {
     align-items: center;
     justify-content: center;
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       transform: translateX(-6.8rem);
     }
   `,
@@ -103,24 +102,24 @@ const style = {
 
 function ProductOnSaleTitle({ onSearch, onSortOrderChange }) {
   const viewport = useViewport();
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = e => {
     setSearchQuery(e.target.value);
   };
-  const handleSearch = (e) => {
-    if (e.key === "Enter") onSearch(searchQuery);
+  const handleSearch = e => {
+    if (e.key === 'Enter') onSearch(searchQuery);
   };
 
   const registBtn = (
-    <Link to="/registration">
-      <button css={style["regist-button"]}>상품 등록하기</button>
+    <Link href="/registration">
+      <button css={style['regist-button']}>상품 등록하기</button>
     </Link>
   );
   const searchQry = (
-    <div css={style["search-query"]}>
+    <div css={style['search-query']}>
       <label htmlFor="search">
-        <img src={searchIcon} alt="searchIcon" />
+        <img src="/Image/ic_search.svg" alt="searchIcon" />
       </label>
       <input
         id="search"
@@ -134,7 +133,7 @@ function ProductOnSaleTitle({ onSearch, onSortOrderChange }) {
   );
   const sortOrderSelect = <SortOrderSelect onChange={onSortOrderChange} />;
 
-  return viewport === CONSTANTS.VIEWPORT.MOBILE ? (
+  return viewport === c.VIEWPORT.MOBILE ? (
     <div css={style.productOnSaleTitle}>
       <h3>판매 중인 상품</h3>
       {registBtn}

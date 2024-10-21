@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { Outlet } from "react-router-dom";
-import CONSTANTS from "../constants.js";
+import { css } from '@emotion/react';
+import c from '../constants.js';
 
 const style = {
   signLayout: css`
@@ -71,7 +70,7 @@ const style = {
         color: #3182f6;
       }
 
-      @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+      @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
         main {
           width: 100%;
           padding-left: 1.6rem;
@@ -88,10 +87,10 @@ const style = {
   `,
 };
 
-function SignLayout() {
+function SignLayout({ children }) {
   return (
     <div id="SignLayout" css={style.signLayout}>
-      <Outlet />
+      {children}
     </div>
   );
 }

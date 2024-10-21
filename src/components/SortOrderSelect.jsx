@@ -1,13 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { useState } from "react";
-import { useViewport } from "../contexts/ViewportContext.jsx";
-import sortIcon from "../Image/ic_sort.svg";
-import arrowDown from "../Image/ic_arrow_down.svg";
-import CONSTANTS from "../constants.js";
+import { css } from '@emotion/react';
+import { useState } from 'react';
+import { useViewport } from '../contexts/ViewportContext.jsx';
+import c from '../constants.js';
 
 const style = {
-  "sort-order": css`
+  'sort-order': css`
     height: 100%;
     width: 13rem;
     border-radius: 12px;
@@ -25,14 +23,14 @@ const style = {
     align-items: center;
     justify-content: space-between;
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       width: 4.2rem;
 
       justify-content: center;
     }
   `,
 
-  "sort-order-list": css`
+  'sort-order-list': css`
     position: absolute;
     display: grid;
     grid-template-rows: repeat(2, 4.2rem);
@@ -66,21 +64,18 @@ const style = {
       }
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       transform: translateX(-8.8rem);
     }
   `,
 };
 
-function SortOrderSelect({
-  initialSortOrder = CONSTANTS.SORT_ORDER.RECENT,
-  onChange,
-}) {
+function SortOrderSelect({ initialSortOrder = c.SORT_ORDER.RECENT, onChange }) {
   const viewport = useViewport();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState(initialSortOrder);
 
-  const handleOrderChange = (o) => {
+  const handleOrderChange = o => {
     setSortOrder(o);
     onChange(o);
     setDropdownOpen(false);
@@ -89,20 +84,16 @@ function SortOrderSelect({
 
   return (
     <div>
-      <div css={style["sort-order"]} onClick={toggleDropdown}>
-        {viewport !== CONSTANTS.VIEWPORT.MOBILE &&
-          CONSTANTS.SORT_ORDER_MSG[sortOrder]}
-        <img
-          src={viewport !== CONSTANTS.VIEWPORT.MOBILE ? arrowDown : sortIcon}
-          alt="sortOrderImg"
-        />
+      <div css={style['sort-order']} onClick={toggleDropdown}>
+        {viewport !== c.VIEWPORT.MOBILE && c.SORT_ORDER_MSG[sortOrder]}
+        <img src={viewport !== c.VIEWPORT.MOBILE ? '/Image/ic_arrow_down.svg' : '/Image/ic_sort.svg'} alt="sortOrderImg" />
       </div>
       {dropdownOpen && (
-        <ul css={style["sort-order-list"]}>
-          {Object.values(CONSTANTS.SORT_ORDER).map((o) => {
+        <ul css={style['sort-order-list']}>
+          {Object.values(c.SORT_ORDER).map(o => {
             return (
               <li onClick={() => handleOrderChange(o)} key={o}>
-                {CONSTANTS.SORT_ORDER_MSG[o]}
+                {c.SORT_ORDER_MSG[o]}
               </li>
             );
           })}

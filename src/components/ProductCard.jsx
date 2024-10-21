@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import defImg from "../Image/img_default.png";
-import heart from "../Image/ic_heart.svg";
-import { priceFunc } from "../utils/utils.js";
-import CONSTANTS from "../constants.js";
+import { css } from '@emotion/react';
+import { priceFunc } from '../utils/utils.js';
+import c from '../constants.js';
 
 const style = {
   card: css`
@@ -17,14 +15,14 @@ const style = {
 
       border-radius: 16px;
 
-      @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+      @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
         &.best {
           width: 343px;
           border-radius: 19.46px;
         }
       }
 
-      @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+      @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
         width: 16.8rem;
         border-radius: 12px;
       }
@@ -64,7 +62,7 @@ const style = {
 
 function ProductCard({ item, type }) {
   const { favoriteCount, price, name, images } = item;
-  const imgUrl = images?.length ? images[0] : defImg;
+  const imgUrl = images?.length ? images[0] : '/Image/img_default.png';
   const priceString = priceFunc(price);
 
   return (
@@ -74,7 +72,7 @@ function ProductCard({ item, type }) {
         <h5 css={style.title}>{name}</h5>
         <p css={style.price}>{priceString}원</p>
         <p css={style.favorite}>
-          <img src={heart} alt="favorite heart" /> {favoriteCount}
+          <img src="/Image/ic_heart.svg" alt="favorite heart" /> {favoriteCount}
         </p>
       </div>
     </div>
