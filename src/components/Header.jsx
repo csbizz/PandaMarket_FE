@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { Link, NavLink } from "react-router-dom";
-import logoImg from "../Image/logo.png";
-import smallLogoImg from "../Image/small_logo.png";
-import { useViewport } from "../contexts/ViewportContext.jsx";
-import CONSTANTS from "../constants.js";
+import { css } from '@emotion/react';
+import c from '../constants';
+import Link from 'next/link';
+import { useViewport } from '../contexts/ViewportContext';
+import { useRouter } from 'next/router';
 
 const style = {
   header: css`
@@ -12,12 +11,12 @@ const style = {
     height: 7rem;
     border-bottom: 1px solid #dfdfdf;
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       padding-left: 2.4rem;
       padding-right: 2.4rem;
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       padding-left: 1.6rem;
       padding-right: 1.6rem;
     }
@@ -33,7 +32,7 @@ const style = {
     line-height: 2.148rem;
     text-align: center;
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       margin-left: 1.6rem;
       gap: 0.8rem;
       font-size: 1.6rem;
@@ -48,35 +47,32 @@ const style = {
   `,
 };
 
-function getLinkStyle({ isActive }) {
-  return {
-    color: isActive ? "#3692ff" : "inherit",
-  };
-}
-
 function Header() {
   const viewport = useViewport();
+  const router = useRouter();
+  // NOTE url path의 첫 부분을 받아와서 Nav 바 색상 변경하기 위함.
+  const firstPath = router.asPath.split('/')[1] ?? '';
 
   return (
     <header css={style.header}>
-      <Link to="/">
+      <Link href="/">
         <img
           css={css`
             width: 153px;
           `}
-          src={viewport === CONSTANTS.VIEWPORT.MOBILE ? smallLogoImg : logoImg}
+          src={viewport === c.VIEWPORT.MOBILE ? '/Image/small_logo.png' : '/Image/logo.png'}
           alt="판다마켓 로고"
         />
       </Link>
       <nav css={style.topNav}>
-        <NavLink to="/free" style={getLinkStyle}>
+        <Link href="/free" style={firstPath === 'free' ? { color: '#3692ff' } : {}}>
           자유게시판
-        </NavLink>
-        <NavLink to="/items" style={getLinkStyle}>
+        </Link>
+        <Link href="/items" style={firstPath === 'items' ? { color: '#3692ff' } : {}}>
           중고마켓
-        </NavLink>
+        </Link>
       </nav>
-      <Link to="/sign/login/" css={style.loginButton} className="button">
+      <Link href="/sign/login/" css={style.loginButton} className="button">
         로그인
       </Link>
     </header>

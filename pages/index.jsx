@@ -1,13 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { Link } from "react-router-dom";
-import topImage from "../Image/Img_home_top.png";
-import hotItem from "../Image/Img_home_01.png";
-import search from "../Image/Img_home_02.png";
-import register from "../Image/Img_home_03.png";
-import bottomImage from "../Image/Img_home_bottom.png";
-import { useViewport } from "../contexts/ViewportContext.jsx";
-import CONSTANTS from "../constants.js";
+import { css } from '@emotion/react';
+import { useViewport } from '@/src/contexts/ViewportContext.jsx';
+import c from '@/src/constants.js';
+import Link from 'next/link';
 
 const style = {
   h1: css`
@@ -25,14 +20,14 @@ const style = {
     height: 54rem;
 
     &#topBanner {
-      background-image: url(${topImage});
+      background-image: url('/Image/Img_home_top.png');
     }
 
     &#bottomBanner {
-      background-image: url(${bottomImage});
+      background-image: url('/Image/Img_home_bottom.png');
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       height: 77.1rem;
       background-position: bottom;
       background-size: 120%;
@@ -40,7 +35,7 @@ const style = {
       align-items: baseline;
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       height: 54rem;
     }
   `,
@@ -49,7 +44,7 @@ const style = {
     margin: 0 auto;
     width: 100%;
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       &.banner {
         text-align: center;
         position: relative;
@@ -57,7 +52,7 @@ const style = {
       }
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       &.banner {
         top: 8%;
       }
@@ -81,7 +76,7 @@ const style = {
       text-align: right;
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       padding: 4rem 2.4rem;
       flex-direction: column;
 
@@ -94,7 +89,7 @@ const style = {
       }
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.MOBILE}px) {
+    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       padding: 3.2rem 1.6rem;
 
       img {
@@ -120,7 +115,7 @@ const style = {
       margin-top: 2.4rem;
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       text-align: left;
       width: 696px;
       margin-top: 1.6rem;
@@ -130,7 +125,7 @@ const style = {
       }
     }
 
-    @media (max-width: ${CONSTANTS.BREAKPOINTS.TABLET}px) {
+    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       width: 100%;
       margin-top: 0.8rem;
     }
@@ -142,21 +137,20 @@ function LandingPage() {
 
   return (
     <main>
-      <section css={style.banner} id={"topBanner"}>
-        <div css={style.mBody} className={"banner"}>
+      <section css={style.banner} id={'topBanner'}>
+        <div css={style.mBody} className={'banner'}>
           <h1 css={style.h1}>
-            일상의 모든 물건을{" "}
-            {viewport !== CONSTANTS.VIEWPORT.TABLET && <br />}
+            일상의 모든 물건을 {viewport !== c.VIEWPORT.TABLET && <br />}
             거래해 보세요
           </h1>
-          <Link css={style.longButton} className={"button"} to="../items/">
+          <Link css={style.longButton} className={'button'} href="/items/">
             구경하러 가기
           </Link>
         </div>
       </section>
       <section css={style.mBody}>
         <div css={style.card}>
-          <img src={hotItem} alt="Hot Item" />
+          <img src="/Image/Img_home_01.png" alt="Hot Item" />
           <div css={style.cardText}>
             <h2>Hot item</h2>
             <h1 css={style.h1}>
@@ -171,8 +165,8 @@ function LandingPage() {
             </p>
           </div>
         </div>
-        <div css={style.card} className={"reverse"}>
-          <img src={search} alt="Search" />
+        <div css={style.card} className={'reverse'}>
+          <img src="/Image/Img_home_02.png" alt="Search" />
           <div css={style.cardText}>
             <h2>Search</h2>
             <h1 css={style.h1}>
@@ -188,7 +182,7 @@ function LandingPage() {
           </div>
         </div>
         <div css={style.card}>
-          <img src={register} alt="Register" />
+          <img src="/Image/Img_home_03.png" alt="Register" />
           <div css={style.cardText}>
             <h2>Register</h2>
             <h1 css={style.h1}>
@@ -204,8 +198,8 @@ function LandingPage() {
           </div>
         </div>
       </section>
-      <section css={style.banner} id={"bottomBanner"}>
-        <div css={style.mBody} className={"banner"}>
+      <section css={style.banner} id={'bottomBanner'}>
+        <div css={style.mBody} className={'banner'}>
           <h1 css={style.h1}>
             믿을 수 있는
             <br />

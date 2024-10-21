@@ -1,14 +1,16 @@
-import { ErrorProvider } from "../contexts/ErrorContext.jsx";
-import { PendingProvider } from "../contexts/PendingContext.jsx";
-import { ViewportProvider } from "../contexts/ViewportContext.jsx";
+import dynamic from 'next/dynamic';
+import { ErrorProvider } from '../contexts/ErrorContext.jsx';
+import { PendingProvider } from '../contexts/PendingContext.jsx';
+
+const ViewportProviderWithNoSSR = dynamic(() => import('../contexts/ViewportContext.jsx'), { ssr: false });
 
 function GlobalContextProvider({ children }) {
   return (
-    <ViewportProvider>
+    <ViewportProviderWithNoSSR>
       <ErrorProvider>
         <PendingProvider>{children}</PendingProvider>
       </ErrorProvider>
-    </ViewportProvider>
+    </ViewportProviderWithNoSSR>
   );
 }
 
