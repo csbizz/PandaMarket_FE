@@ -12,11 +12,11 @@ export default class CONSTANTS {
   });
   static SORT_ORDER = Object.freeze({
     RECENT: 'recent',
-    // FAVORITE: 'favorite'
+    // FAVORITE: 'favorite',
   });
   static SORT_ORDER_MSG = Object.freeze({
-    [CONSTANTS.SORT_ORDER.RECENT]: '최신순',
-    // [this.SORT_ORDER.FAVORITE]: '좋아요순'
+    [this.SORT_ORDER.RECENT]: '최신순',
+    // [this.SORT_ORDER.FAVORITE]: '좋아요순',
   });
   static VIEWPORT = Object.freeze({
     PC: 'PC',
@@ -26,5 +26,11 @@ export default class CONSTANTS {
   static BREAKPOINTS = Object.freeze({
     MOBILE: 743,
     TABLET: 1199,
+  });
+  static EMPTY_INPUT_OBJ = Object.freeze({
+    value: '',
+    name: '',
+    type: '',
+    errMsg: '',
   });
 }

@@ -5,7 +5,7 @@ import { getProducts } from '../utils/api.js';
 import useAsync from '../hooks/useAsync.js';
 import { useViewport } from '../contexts/ViewportContext.jsx';
 import ProductCard from './ProductCard.jsx';
-import c from '../constants.js';
+import c from '../utils/constants.js';
 
 const style = {
   bestProductsTitle: css`

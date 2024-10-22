@@ -2,8 +2,9 @@
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import { useViewport } from '../contexts/ViewportContext.jsx';
-import c from '../constants.js';
+import c from '../utils/constants.js';
 import Image from 'next/image';
+import DropdownMenu from './DropdownMenu';
 
 const style = {
   sortOrder: css`
@@ -28,47 +29,6 @@ const style = {
       width: 4.2rem;
 
       justify-content: center;
-    }
-  `,
-
-  sortOrderList: css`
-    position: absolute;
-    display: grid;
-    grid-template-rows: repeat(2, 4.2rem);
-    grid-gap: 0;
-    margin-top: 0.8rem;
-    width: 13rem;
-
-    li {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: 1px solid var(--gray-200);
-      border-bottom: 0;
-      border-top-left-radius: 1.2rem;
-      border-top-right-radius: 1.2rem;
-      background-color: #ffffff;
-      color: var(--gray-800);
-      font-size: 1.6rem;
-      font-weight: 400;
-      line-height: 2.6rem;
-
-      &:last-child {
-        border-bottom: 1px solid var(--gray-200);
-        border-bottom-left-radius: 1.2rem;
-        border-bottom-right-radius: 1.2rem;
-      }
-
-      &:hover {
-        background-color: var(--Primary-100);
-        color: var(--gray-50);
-        border: none;
-      }
-    }
-
-    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
-      transform: translateX(-8.8rem);
     }
   `,
 };
@@ -96,17 +56,7 @@ export default function SortOrderSelect({ initialSortOrder = c.SORT_ORDER.RECENT
           height={24}
         />
       </div>
-      {dropdownOpen && (
-        <ul id="sortOrderList" css={style.sortOrderList}>
-          {Object.values(c.SORT_ORDER).map(o => {
-            return (
-              <li onClick={() => handleOrderChange(o)} key={o}>
-                {c.SORT_ORDER_MSG[o]}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      {dropdownOpen && <DropdownMenu list={c.SORT_ORDER} dictionary={c.SORT_ORDER_MSG} onClick={handleOrderChange} />}
     </div>
   );
 }

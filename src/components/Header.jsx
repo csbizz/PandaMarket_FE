@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import c from '../constants';
+import c from '../utils/constants';
 import Link from 'next/link';
 import { useViewport } from '../contexts/ViewportContext';
 import { useRouter } from 'next/router';

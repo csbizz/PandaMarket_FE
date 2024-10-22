@@ -1,5 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import c from '@/src/utils/constants';
+import { useEffect, useState } from 'react';
+import Input from '@/src/components/Input';
+import { useRouter } from 'next/router';
 
 const style = {
   articlePost: css`
@@ -45,20 +49,50 @@ const style = {
     }
   `,
 };
+
 export default function ArticlePost() {
+  const router = useRouter();
+  const [titleObj, setTitleObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'title', type: 'text' });
+  const [contentObj, setContentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'content', type: 'text' });
+  const [canSubmit, setCanSubmit] = useState(false);
+
+  const handleBlur = inputObj => {
+    const { value, name } = inputObj;
+
+    let setInputObj = null;
+    switch (name) {
+      case 'title':
+        setInputObj = setTitleObj;
+        break;
+      case 'content':
+        setInputObj = setContentObj;
+        break;
+    }
+    setInputObj(prev => {
+      return { ...prev, value };
+    });
+  };
+  const handleSubmit = () => {
+    router.push('/articles/:id');
+  };
+
+  useEffect(() => {
+    if (titleObj.value && contentObj.value) return setCanSubmit(true);
+
+    return setCanSubmit(false);
+  }, [titleObj, contentObj]);
+
   return (
     <div id="articlePost" css={style.articlePost}>
       <div className="title">
         <span>게시글 쓰기</span>
-        <button type="button" className="button" disabled>
+        <button type="button" className="button" onClick={handleSubmit} disabled={!canSubmit}>
           등록
         </button>
       </div>
       <form>
-        <div>
-          <label htmlFor="title">*제목</label>
-          <input type="text" id="title" />
-        </div>
+        <Input inputObj={titleObj} label={'*제목'} placeholder={'제목을 입력해주세요'} onBlur={handleBlur} />
+        <Input inputObj={contentObj} label={'*내용'} placeholder={'내용을 입력해주세요'} onBlur={handleBlur} textarea />
       </form>
     </div>
   );

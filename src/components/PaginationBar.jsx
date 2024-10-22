@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { useViewport } from '../contexts/ViewportContext.jsx';
 import usePagination from '../hooks/usePagination.js';
-import c from '../constants.js';
+import c from '../utils/constants.js';
 
 const style = {
   paginationBar: css`

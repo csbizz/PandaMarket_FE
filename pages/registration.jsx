@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import TagButton from '@/src/components/TagButton.jsx';
 import useValidation from '@/src/hooks/useValidation.js';
-import c from '@/src/constants.js';
+import c from '@/src/utils/constants.js';
 import Input from '@/src/components/Input';
 
 const style = {
@@ -54,47 +54,17 @@ const style = {
       gap: 2.4rem;
     }
   `,
-  inputWrap: css`
-    label {
-      line-height: 2.6rem;
-    }
-
-    input,
-    textarea {
-      margin-top: 1.6rem;
-    }
-
-    p {
-      font-size: 1.4rem;
-      line-height: 2.4rem;
-      font-weight: 600;
-      color: var(--error-red);
-      margin-top: 0.8rem;
-      margin-left: 1.6rem;
-
-      &.tag-error {
-        margin-bottom: 0.8rem;
-      }
-    }
-  `,
   tagButtonWrap: css`
     margin-top: 1.4rem;
   `,
 };
 
-const emptyInputObj = {
-  value: '',
-  name: '',
-  type: '',
-  errMsg: '',
-};
-
 export default function RegistrationPage() {
   const validation = useValidation();
-  const [nameObj, setNameObj] = useState({ ...emptyInputObj, name: 'name', type: 'text' });
-  const [descriptionObj, setDescriptionObj] = useState({ ...emptyInputObj, name: 'description', type: 'text' });
-  const [priceObj, setPriceObj] = useState({ ...emptyInputObj, name: 'price', type: 'number' });
-  const [tagObj, setTagObj] = useState({ ...emptyInputObj, name: 'tag', type: 'text' });
+  const [nameObj, setNameObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'name', type: 'text' });
+  const [descriptionObj, setDescriptionObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'description', type: 'text' });
+  const [priceObj, setPriceObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'price', type: 'number' });
+  const [tagObj, setTagObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'tag', type: 'text' });
   const [tags, setTags] = useState([]);
   const [validationCheck, setValidationCheck] = useState({});
   const [canSubmit, setCanSubmit] = useState(false);

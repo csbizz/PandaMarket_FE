@@ -5,7 +5,7 @@ import ProductsOnSale from '@/src/components/ProductsOnSale.jsx';
 import { useIsLoading } from '@/src/contexts/PendingContext.jsx';
 import { useError } from '@/src/contexts/ErrorContext.jsx';
 import Modal from '@/src/components/Modal.jsx';
-import c from '@/src/constants.js';
+import c from '@/src/utils/constants.js';
 
 const style = {
   itemsPage: css`

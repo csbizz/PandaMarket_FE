@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useState } from 'react';
 import SortOrderSelect from './SortOrderSelect.jsx';
 import { useViewport } from '../contexts/ViewportContext.jsx';
-import c from '../constants.js';
+import c from '../utils/constants.js';
 import Link from 'next/link';
 import SearchBar from './SearchBar';
 

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
-import c from '@/src/constants';
+import c from '@/src/utils/constants';
 import Image from 'next/image';
 
 const style = {

@@ -7,7 +7,7 @@ import ProductCard from './ProductCard.jsx';
 import PaginationBar from './PaginationBar.jsx';
 import ProductOnSaleTitle from './ProductOnSaleTitle.jsx';
 import { useViewport } from '../contexts/ViewportContext.jsx';
-import c from '../constants.js';
+import c from '../utils/constants.js';
 
 const style = {
   productOnSale: css`
