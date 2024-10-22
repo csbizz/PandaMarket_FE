@@ -44,7 +44,7 @@ const style = {
 
 export default function PaginationBar({ totalCount, onPageChange }) {
   const viewport = useViewport();
-  const [currentPage, bundle, bundleCount, totalBundleCounts, goToPage, nextBundle, prevBundle] = usePagination(
+  const { currentPage, bundle, bundleCount, totalBundleCounts, goToPage, nextBundle, prevBundle } = usePagination(
     totalCount,
     c.ITEM_PAGE_SIZE[viewport],
     c.BUNDLE_SIZE,

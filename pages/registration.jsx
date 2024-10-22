@@ -81,17 +81,17 @@ const style = {
   `,
 };
 
-const init = {
+const emptyInputObj = {
   value: '',
   errMsg: '',
 };
 
 export default function RegistrationPage() {
   const validation = useValidation();
-  const [nameObj, setNameObj] = useState({ name: 'name', ...init });
-  const [descriptionObj, setDescriptionObj] = useState({ name: 'description', ...init });
-  const [priceObj, setPriceObj] = useState({ name: 'price', ...init });
-  const [tagObj, setTagObj] = useState({ name: 'tag', ...init });
+  const [nameObj, setNameObj] = useState({ name: 'name', ...emptyInputObj });
+  const [descriptionObj, setDescriptionObj] = useState({ name: 'description', ...emptyInputObj });
+  const [priceObj, setPriceObj] = useState({ name: 'price', ...emptyInputObj });
+  const [tagObj, setTagObj] = useState({ name: 'tag', ...emptyInputObj });
   const [tags, setTags] = useState([]);
   const [validationCheck, setValidationCheck] = useState({});
   const [canSubmit, setCanSubmit] = useState(false);
@@ -99,44 +99,72 @@ export default function RegistrationPage() {
   const handleValidation = e => {
     const name = e.target.name;
     const value = e.target.value;
+
+    // NOTE Validation
+    const errMsg = validation(name, value);
+
+    // NOTE count validation
     switch (name) {
       case 'name':
         setValidationCheck(prev => {
           return { ...prev, nameCheck: true };
         });
-        return setNameObj(prev => {
-          return { ...prev, errMsg: validation(name, value) };
-        });
+        break;
       case 'description':
         setValidationCheck(prev => {
           return { ...prev, descCheck: true };
         });
-        return setDescriptionObj(prev => {
-          return { ...prev, errMsg: validation(name, value) };
-        });
+        break;
       case 'price':
         setValidationCheck(prev => {
           return { ...prev, priceCheck: true };
         });
-        return setPriceObj(prev => {
-          return { ...prev, errMsg: validation(name, value) };
-        });
+        break;
       case 'tag':
         setValidationCheck(prev => {
           return { ...prev, tagCheck: true };
         });
-        return setTagObj(prev => {
-          return { ...prev, errMsg: validation(name, value) };
-        });
+        break;
     }
+
+    // NOTE Set input Ojbect
+    switch (name) {
+      case 'name':
+        setNameObj(prev => {
+          return { ...prev, errMsg };
+        });
+        break;
+      case 'description':
+        setDescriptionObj(prev => {
+          return { ...prev, errMsg };
+        });
+        break;
+      case 'price':
+        setPriceObj(prev => {
+          return { ...prev, errMsg };
+        });
+        break;
+      case 'tag':
+        setTagObj(prev => {
+          return { ...prev, errMsg };
+        });
+        break;
+    }
+
+    // NOTE errMsg가 없음 = validation을 통과함.
+    return !errMsg;
   };
   const handleAddTag = e => {
     if (e.key === 'Enter') {
-      if (!handleValidation(e)) return;
+      if (tags.length >= 5)
+        return setTagObj(prev => {
+          return { ...prev, errMsg: '태그는 5개까지 입력 가능합니다.' };
+        });
       if (tags.includes(e.target.value))
         return setTagObj(prev => {
           return { ...prev, errMsg: '같은 태그가 존재합니다' };
         });
+      if (!handleValidation(e)) return;
 
       setTags(prev => [...prev, e.target.value]);
       setTagObj(prev => {
@@ -151,9 +179,14 @@ export default function RegistrationPage() {
   };
 
   useEffect(() => {
+    // NOTE 4개 항목의 최초 Validation이 진행되지 않았을 경우, false를 리턴.
     if (Object.keys(validationCheck).length !== 4) return setCanSubmit(false);
 
-    return setCanSubmit(!(nameObj.errMsg || descriptionObj.errMsg || priceObj.errMsg || tagObj.errMsg));
+    // NOTE validation 통과 여부
+    const isOk = !(nameObj.errMsg || descriptionObj.errMsg || priceObj.errMsg || tagObj.errMsg);
+
+    // NOTE validation을 통과했는가? + 태그가 1개 이상인가?
+    return setCanSubmit(isOk && tags.length > 0);
   }, [nameObj.errMsg, descriptionObj.errMsg, priceObj.errMsg, tagObj.errMsg, validationCheck]);
 
   return (

@@ -55,5 +55,5 @@ export default function usePagination(totalCounts, pageSize, bundleSize, onPageC
     goToPage(head);
   }, [bundleCount, totalPages, bundleSize, goToPage]);
 
-  return [currentPage, bundle, bundleCount, totalBundleCounts, goToPage, nextBundle, prevBundle];
+  return { currentPage, bundle, bundleCount, totalBundleCounts, goToPage, nextBundle, prevBundle };
 }
