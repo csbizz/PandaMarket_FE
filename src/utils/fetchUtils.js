@@ -45,24 +45,22 @@ async function fetchData({ url: requestUrl, method, body = {}, params = {}, opti
   }
 }
 
-async function fetchGet(url, params, options) {
+export async function fetchGet(url, params, options) {
   return await fetchData({ url, method: HTTP_METHODS.GET, params, options });
 }
 
-async function fetchPost(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
+export async function fetchPost(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
   return await fetchData({ url, method: HTTP_METHODS.POST, body, options });
 }
 
-async function fetchPatch(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
+export async function fetchPatch(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
   return await fetchData({ url, method: HTTP_METHODS.PATCH, body, options });
 }
 
-async function fetchPut(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
+export async function fetchPut(url, body, options = { headers: { 'Content-Type': 'application/json' } }) {
   return await fetchData({ url, method: HTTP_METHODS.PUT, body, options });
 }
 
-async function fetchDelete(url, options) {
+export async function fetchDelete(url, options) {
   return await fetchData({ url, method: HTTP_METHODS.DELETE, options });
 }
-
-export { fetchGet, fetchPost, fetchPatch, fetchDelete, fetchPut };

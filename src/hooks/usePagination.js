@@ -1,37 +1,26 @@
 import { useCallback, useEffect, useState } from 'react';
 
-function usePagination(
-  totalCounts,
-  pageSize,
-  bundleSize,
-  onPageChange,
-  initialPage = 1,
-  initialBundleCount = 1
-) {
+export default function usePagination(totalCounts, pageSize, bundleSize, onPageChange, initialPage = 1, initialBundleCount = 1) {
   const [currentPage, setCurrentPage] = useState(initialPage);
-  const [totalPages, setTotalPages] = useState(
-    Math.ceil(totalCounts / pageSize)
-  );
+  const [totalPages, setTotalPages] = useState(Math.ceil(totalCounts / pageSize));
   const [bundleCount, setBundleCount] = useState(initialBundleCount);
   const [bundle, setBundle] = useState([]);
-  const [totalBundleCounts, setTotalBundleCounts] = useState(
-    Math.ceil(totalPages / bundleSize)
-  );
+  const [totalBundleCounts, setTotalBundleCounts] = useState(Math.ceil(totalPages / bundleSize));
 
   const goToPage = useCallback(
-    (page) => {
+    page => {
       setCurrentPage(Math.max(Math.min(page, totalPages), 1));
       onPageChange(page);
     },
-    [totalPages, onPageChange]
+    [totalPages, onPageChange],
   );
 
   const nextBundle = () => {
-    setBundleCount((prev) => Math.min(prev + 1, totalBundleCounts));
+    setBundleCount(prev => Math.min(prev + 1, totalBundleCounts));
   };
 
   const prevBundle = () => {
-    setBundleCount((prev) => Math.max(prev - 1, 1));
+    setBundleCount(prev => Math.max(prev - 1, 1));
   };
 
   // const nextPage = () => {
@@ -66,15 +55,5 @@ function usePagination(
     goToPage(head);
   }, [bundleCount, totalPages, bundleSize, goToPage]);
 
-  return [
-    currentPage,
-    bundle,
-    bundleCount,
-    totalBundleCounts,
-    goToPage,
-    nextBundle,
-    prevBundle,
-  ];
+  return [currentPage, bundle, bundleCount, totalBundleCounts, goToPage, nextBundle, prevBundle];
 }
-
-export default usePagination;

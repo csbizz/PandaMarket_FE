@@ -32,7 +32,7 @@ const style = {
   `,
 };
 
-function Footer() {
+export default function Footer() {
   return (
     <footer css={style.footer}>
       <div>
@@ -59,5 +59,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

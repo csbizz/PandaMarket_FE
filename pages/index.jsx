@@ -144,7 +144,7 @@ const style = {
   `,
 };
 
-function LandingPage() {
+export default function LandingPage() {
   const viewport = useViewport();
 
   return (
@@ -228,5 +228,3 @@ function LandingPage() {
     </div>
   );
 }
-
-export default LandingPage;

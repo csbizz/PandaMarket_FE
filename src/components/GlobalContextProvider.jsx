@@ -4,7 +4,7 @@ import { PendingProvider } from '../contexts/PendingContext.jsx';
 
 const ViewportProviderWithNoSSR = dynamic(() => import('../contexts/ViewportContext.jsx'), { ssr: false });
 
-function GlobalContextProvider({ children }) {
+export default function GlobalContextProvider({ children }) {
   return (
     <ViewportProviderWithNoSSR>
       <ErrorProvider>
@@ -13,5 +13,3 @@ function GlobalContextProvider({ children }) {
     </ViewportProviderWithNoSSR>
   );
 }
-
-export default GlobalContextProvider;

@@ -48,7 +48,7 @@ const style = {
   `,
 };
 
-function Header() {
+export default function Header() {
   const viewport = useViewport();
   const router = useRouter();
   // NOTE url path의 첫 부분을 받아와서 Nav 바 색상 변경하기 위함.
@@ -78,5 +78,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

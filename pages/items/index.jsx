@@ -31,7 +31,7 @@ const style = {
   `,
 };
 
-function ItemsPage() {
+export default function ItemsPage() {
   const isLoading = useIsLoading();
   const err = useError();
 
@@ -46,5 +46,3 @@ function ItemsPage() {
     </>
   );
 }
-
-export default ItemsPage;

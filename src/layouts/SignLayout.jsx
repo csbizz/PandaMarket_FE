@@ -81,12 +81,10 @@ const style = {
   `,
 };
 
-function SignLayout({ children }) {
+export default function SignLayout({ children }) {
   return (
     <div id="SignLayout" css={style.signLayout}>
       {children}
     </div>
   );
 }
-
-export default SignLayout;

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useSetError } from '../contexts/ErrorContext.jsx';
 import { useSetPending } from '../contexts/PendingContext.jsx';
 
-function useAsync(asyncFunc) {
+export default function useAsync(asyncFunc) {
   const setPending = useSetPending();
   const setErr = useSetError();
 
@@ -20,10 +20,8 @@ function useAsync(asyncFunc) {
         setPending(false);
       }
     },
-    [asyncFunc, setPending, setErr]
+    [asyncFunc, setPending, setErr],
   );
 
   return wrappedFunc;
 }
-
-export default useAsync;

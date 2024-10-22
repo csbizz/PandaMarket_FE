@@ -1,4 +1,4 @@
-function useValidation() {
+export default function useValidation() {
   const validationFunc = (name, value, setObj) => {
     switch (name) {
       case 'name':
@@ -12,7 +12,7 @@ function useValidation() {
       default:
         const isOK = false;
         const errMsg = 'Invalid input name';
-        setObj((prev) => {
+        setObj(prev => {
           return { ...prev, isOK, errMsg };
         });
         return isOK;
@@ -25,21 +25,21 @@ function useValidation() {
     if (value?.length <= 0) {
       const isOK = false;
       const errMsg = '1자 이상 입력해주세요';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
     } else if (value?.length > 10) {
       const isOK = false;
       const errMsg = '10자 이내로 입력해주세요';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
     } else {
       const isOK = true;
       const errMsg = '';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
@@ -50,21 +50,21 @@ function useValidation() {
     if (value?.length <= 10) {
       const isOK = false;
       const errMsg = '10자 이상 입력해주세요';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
     } else if (value?.length > 100) {
       const isOK = false;
       const errMsg = '100자 이내로 입력해주세요';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
     } else {
       const isOK = true;
       const errMsg = '';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
@@ -76,21 +76,21 @@ function useValidation() {
     if (!p) {
       const isOK = false;
       const errMsg = '숫자로 입력해주세요';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
     } else if (p < 0) {
       const isOK = false;
       const errMsg = '양수로 입력해주세요';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
     } else {
       const isOK = true;
       const errMsg = '';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
@@ -101,19 +101,17 @@ function useValidation() {
     if (value?.length > 5) {
       const isOK = false;
       const errMsg = '5글자 이내로 입력해주세요';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
     } else {
       const isOK = true;
       const errMsg = '';
-      setObj((prev) => {
+      setObj(prev => {
         return { ...prev, isOK, errMsg };
       });
       return isOK;
     }
   }
 }
-
-export default useValidation;

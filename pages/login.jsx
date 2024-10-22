@@ -10,7 +10,7 @@ const style = {
   login: css``,
 };
 
-function LoginPage() {
+export default function LoginPage() {
   return (
     <SignLayout>
       <div id="login" css={style.login}>
@@ -47,5 +47,3 @@ function LoginPage() {
     </SignLayout>
   );
 }
-
-export default LoginPage;

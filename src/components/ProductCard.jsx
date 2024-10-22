@@ -57,7 +57,7 @@ const style = {
   `,
 };
 
-function ProductCard({ item, type }) {
+export default function ProductCard({ item, type }) {
   const { favoriteCount, price, name, images } = item;
   const imgUrl = images?.length ? images[0] : '/Image/img_default.png';
   const priceString = priceFunc(price);
@@ -77,5 +77,3 @@ function ProductCard({ item, type }) {
     </div>
   );
 }
-
-export default ProductCard;

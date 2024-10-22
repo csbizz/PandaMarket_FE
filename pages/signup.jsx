@@ -12,7 +12,7 @@ const style = {
   `,
 };
 
-function SignupPage() {
+export default function SignupPage() {
   return (
     <SignLayout>
       <div id="signUp" css={style.signUp}>
@@ -51,5 +51,3 @@ function SignupPage() {
     </SignLayout>
   );
 }
-
-export default SignupPage;

@@ -20,7 +20,7 @@ const style = {
   `,
 };
 
-function TagButton({ name, onClick }) {
+export default function TagButton({ name, onClick }) {
   const handleClick = () => onClick(name);
 
   return (
@@ -30,5 +30,3 @@ function TagButton({ name, onClick }) {
     </button>
   );
 }
-
-export default TagButton;

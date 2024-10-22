@@ -49,7 +49,7 @@ const style = {
   `,
 };
 
-function Modal({ message, noButton = false }) {
+export default function Modal({ message, noButton = false }) {
   const [modalOff, setModalOff] = useState('');
   const handleClick = () => setModalOff('off');
 
@@ -66,5 +66,3 @@ function Modal({ message, noButton = false }) {
     </div>
   );
 }
-
-export default Modal;

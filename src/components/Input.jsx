@@ -32,7 +32,7 @@ const style = {
   `,
 };
 
-export default function SignInput({ label, type, placeholder }) {
+export default function Input({ label, type, placeholder }) {
   return (
     <div id="signInput" css={style.signInput}>
       <label htmlFor={`for_${type}`} className="label">

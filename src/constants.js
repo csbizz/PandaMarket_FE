@@ -1,4 +1,4 @@
-class CONSTANTS {
+export default class CONSTANTS {
   static BEST_ITEM_PAGE_SIZE = Object.freeze({
     PC: 4,
     TABLET: 2,
@@ -28,5 +28,3 @@ class CONSTANTS {
     TABLET: 1199,
   });
 }
-
-export default CONSTANTS;

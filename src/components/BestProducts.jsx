@@ -40,7 +40,7 @@ const style = {
   `,
 };
 
-function BestProducts() {
+export default function BestProducts() {
   const viewport = useViewport();
   const [items, setItems] = useState([]);
   const getProductsAsync = useAsync(getProducts);
@@ -73,5 +73,3 @@ function BestProducts() {
     </section>
   );
 }
-
-export default BestProducts;

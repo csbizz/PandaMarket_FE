@@ -55,7 +55,7 @@ const style = {
   `,
 };
 
-function ProductsOnSale() {
+export default function ProductsOnSale() {
   const viewport = useViewport();
   const [items, setItems] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -100,5 +100,3 @@ function ProductsOnSale() {
     </section>
   );
 }
-
-export default ProductsOnSale;

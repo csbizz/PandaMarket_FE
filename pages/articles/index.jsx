@@ -18,7 +18,7 @@ const style = {
   `,
 };
 
-function FreeBoard() {
+export default function FreeBoard() {
   return (
     <div id="freeBoard" css={style.freeBoard}>
       <div id="bestArticlesWrapper" css={style.bestArticlesWrapper}>
@@ -30,5 +30,3 @@ function FreeBoard() {
     </div>
   );
 }
-
-export default FreeBoard;

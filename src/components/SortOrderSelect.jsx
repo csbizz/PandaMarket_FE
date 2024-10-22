@@ -73,7 +73,7 @@ const style = {
   `,
 };
 
-function SortOrderSelect({ initialSortOrder = c.SORT_ORDER.RECENT, onChange }) {
+export default function SortOrderSelect({ initialSortOrder = c.SORT_ORDER.RECENT, onChange }) {
   const viewport = useViewport();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState(initialSortOrder);
@@ -110,5 +110,3 @@ function SortOrderSelect({ initialSortOrder = c.SORT_ORDER.RECENT, onChange }) {
     </div>
   );
 }
-
-export default SortOrderSelect;

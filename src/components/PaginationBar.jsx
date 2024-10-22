@@ -42,7 +42,7 @@ const style = {
   `,
 };
 
-function PaginationBar({ totalCount, onPageChange }) {
+export default function PaginationBar({ totalCount, onPageChange }) {
   const viewport = useViewport();
   const [currentPage, bundle, bundleCount, totalBundleCounts, goToPage, nextBundle, prevBundle] = usePagination(
     totalCount,
@@ -69,5 +69,3 @@ function PaginationBar({ totalCount, onPageChange }) {
     </div>
   );
 }
-
-export default PaginationBar;

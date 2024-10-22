@@ -87,7 +87,7 @@ const init = {
   errMsg: '',
 };
 
-function RegistrationPage() {
+export default function RegistrationPage() {
   const validation = useValidation();
   const [nameObj, setNameObj] = useState({ name: 'name', ...init });
   const [descriptionObj, setDescriptionObj] = useState({
@@ -242,5 +242,3 @@ function RegistrationPage() {
     </div>
   );
 }
-
-export default RegistrationPage;

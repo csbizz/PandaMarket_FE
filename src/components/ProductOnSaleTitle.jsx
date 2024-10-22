@@ -62,7 +62,7 @@ const style = {
   `,
 };
 
-function ProductOnSaleTitle({ onSearch, onSortOrderChange }) {
+export default function ProductOnSaleTitle({ onSearch, onSortOrderChange }) {
   const viewport = useViewport();
 
   const registBtn = (
@@ -96,5 +96,3 @@ function ProductOnSaleTitle({ onSearch, onSortOrderChange }) {
     </div>
   );
 }
-
-export default ProductOnSaleTitle;
