@@ -61,6 +61,19 @@ const style = {
         font-weight: 600;
       }
     }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+
+      .nickname {
+        margin-right: 0.8rem;
+      }
+
+      .heart {
+        margin-left: 0.4rem;
+      }
+    }
   `,
 };
 
@@ -74,6 +87,16 @@ function BestArticle() {
       <div className="content">
         <p>맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?</p>
         <Image src="/Image/img_article_default.png" alt="default image" width={72} height={72} />
+      </div>
+      <div className="info">
+        <div>
+          <span className="nickname">총명한판다</span>
+          <Image src="/Image/ic_heart.svg" alt="favorite heart" width={16} height={16} />
+          <span className="heart">9999+</span>
+        </div>
+        <div>
+          <p>2024. 04. 16</p>
+        </div>
       </div>
     </div>
   );

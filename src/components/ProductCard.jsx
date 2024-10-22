@@ -54,11 +54,6 @@ const style = {
     font-size: 1.2rem;
     line-height: 1.8rem;
     color: var(--gray-600);
-
-    img {
-      width: 1.6rem;
-      height: 1.6rem;
-    }
   `,
 };
 
@@ -76,7 +71,7 @@ function ProductCard({ item, type }) {
         <h5 css={style.title}>{name}</h5>
         <p css={style.price}>{priceString}원</p>
         <p css={style.favorite}>
-          <img src="/Image/ic_heart.svg" alt="favorite heart" /> {favoriteCount}
+          <Image src="/Image/ic_heart.svg" alt="favorite heart" width={16} height={16} /> {favoriteCount}
         </p>
       </div>
     </div>
