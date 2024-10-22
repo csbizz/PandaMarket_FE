@@ -52,7 +52,7 @@ function PaginationBar({ totalCount, onPageChange }) {
   );
 
   return (
-    <div css={style.paginationBar}>
+    <div id="paginationBar" css={style.paginationBar}>
       <div className={'pagination productOnSale'}>
         <button onClick={prevBundle} disabled={bundleCount <= 1}>
           &lt;

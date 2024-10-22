@@ -9,6 +9,7 @@ function LoginPage() {
   return (
     <SignLayout>
       <main
+        id="login"
         css={css`
           height: calc(100vh - 23rem - var(--adjust-vh));
         `}

@@ -20,12 +20,12 @@ const style = {
       padding-right: 1.6rem;
     }
   `,
-  'footer-link': css`
+  footerLink: css`
     display: flex;
     gap: 3rem;
     color: var(--gray-200);
   `,
-  'sns-link': css`
+  snsLink: css`
     display: flex;
     gap: 1.2rem;
 
@@ -42,11 +42,11 @@ function Footer() {
       <div>
         <p>©codeit - 2024</p>
       </div>
-      <div css={style['footer-link']}>
+      <div id="footerLink" css={style.footerLink}>
         <Link href="/privacy">Privacy Policy</Link>
         <Link href="/faq">FAQ</Link>
       </div>
-      <div css={style['sns-link']}>
+      <div id="snsLink" css={style.snsLink}>
         <Link href="https://www.facebook.com/">
           <img src="/Image/ic_facebook.png" alt="facebook" />
         </Link>

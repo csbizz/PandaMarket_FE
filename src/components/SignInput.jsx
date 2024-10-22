@@ -51,7 +51,7 @@ const style = {
 
 function SignInput({ label, type, placeholder }) {
   return (
-    <div css={style.signInput}>
+    <div id="signInput" css={style.signInput}>
       <label htmlFor={`for_${type}`}>{label}</label>
       <div className="input-wrap">
         <input id={`for_${type}`} type={type} placeholder={placeholder} />

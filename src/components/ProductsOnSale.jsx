@@ -10,6 +10,9 @@ import { useViewport } from '../contexts/ViewportContext.jsx';
 import c from '../constants.js';
 
 const style = {
+  productOnSale: css`
+    margin: 0 auto;
+  `,
   productOnSaleItems: css`
     height: 67.4rem;
 
@@ -84,11 +87,7 @@ function ProductsOnSale() {
   }, [viewport, now, sortOrder, searchQuery, getProductsAsync]);
 
   return (
-    <section
-      css={css`
-        margin: 0 auto;
-      `}
-    >
+    <section id="productOnSale" css={style.productOnSale}>
       <ProductOnSaleTitle onSearch={handleSearch} onSortOrderChange={handleSortOrderChange} />
       <div css={style.productOnSaleItems}>
         {items.map(item => {

@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 
 const style = {
-  'tag-button': css`
+  tagButton: css`
     background-color: var(--gray-100);
     display: inline-flex;
     align-items: center;
@@ -23,7 +23,7 @@ function TagButton({ name, onClick }) {
   const handleClick = () => onClick(name);
 
   return (
-    <button css={style['tag-button']} type="button" onClick={handleClick}>
+    <button id="tagButton" css={style.tagButton} type="button" onClick={handleClick}>
       {`#${name}`}
       <img src="/Image/ic_X.png" alt="X" />
     </button>

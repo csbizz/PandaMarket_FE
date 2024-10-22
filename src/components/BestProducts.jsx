@@ -11,7 +11,7 @@ const style = {
   bestProductsTitle: css`
     margin-bottom: 1.6rem;
 
-    h3 {
+    h2 {
       font-weight: 700;
       font-size: 2rem;
       line-height: 3.2rem;
@@ -61,9 +61,9 @@ function BestProducts() {
   }, [viewport, getProductsAsync]);
 
   return (
-    <section>
+    <section id="bestProduct">
       <div css={style.bestProductsTitle}>
-        <h3>베스트 상품</h3>
+        <h2>베스트 상품</h2>
       </div>
       <div css={style.bestProductsItems}>
         {items.map(item => {

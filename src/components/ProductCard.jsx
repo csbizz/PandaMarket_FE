@@ -66,7 +66,7 @@ function ProductCard({ item, type }) {
   const priceString = priceFunc(price);
 
   return (
-    <div css={style.card}>
+    <div id="productCard" css={style.card}>
       <img src={imgUrl} alt={name} className={`${type}`} />
       <div css={style.info}>
         <h5 css={style.title}>{name}</h5>

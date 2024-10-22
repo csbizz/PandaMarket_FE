@@ -11,6 +11,10 @@ const style = {
     height: 7rem;
     border-bottom: 1px solid #dfdfdf;
 
+    img {
+      width: 153px;
+    }
+
     @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       padding-left: 2.4rem;
       padding-right: 2.4rem;
@@ -56,13 +60,7 @@ function Header() {
   return (
     <header css={style.header}>
       <Link href="/">
-        <img
-          css={css`
-            width: 153px;
-          `}
-          src={viewport === c.VIEWPORT.MOBILE ? '/Image/small_logo.png' : '/Image/logo.png'}
-          alt="판다마켓 로고"
-        />
+        <img src={viewport === c.VIEWPORT.MOBILE ? '/Image/small_logo.png' : '/Image/logo.png'} alt="판다마켓 로고" />
       </Link>
       <nav css={style.topNav}>
         <Link href="/free" style={firstPath === 'free' ? { color: '#3692ff' } : {}}>

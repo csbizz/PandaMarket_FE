@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { useState } from "react";
+import { css } from '@emotion/react';
+import { useState } from 'react';
 
 const style = {
   modal: css`
@@ -20,7 +20,7 @@ const style = {
       display: none;
     }
   `,
-  "modal-content": css`
+  modalContent: css`
     width: 54rem;
     height: 25rem;
     border-radius: 8px;
@@ -50,12 +50,12 @@ const style = {
 };
 
 function Modal({ message, noButton = false }) {
-  const [modalOff, setModalOff] = useState("");
-  const handleClick = () => setModalOff("off");
+  const [modalOff, setModalOff] = useState('');
+  const handleClick = () => setModalOff('off');
 
   return (
-    <div css={style.modal} className={`${modalOff}`}>
-      <div css={style["modal-content"]}>
+    <div id="modal" css={style.modal} className={`${modalOff}`}>
+      <div id="modalContent" css={style.modalContent}>
         <p>{message}</p>
         {!noButton && (
           <div className="button" onClick={handleClick}>

@@ -173,7 +173,7 @@ function RegistrationPage() {
   useEffect(() => setCanSubmit(false), []); // 최초 렌더링시 등록 버튼 비활성화
 
   return (
-    <div css={style.registrationPage}>
+    <main id="registration" css={style.registrationPage}>
       <form>
         <div css={style.title}>
           <p>상품 등록하기</p>
@@ -269,7 +269,7 @@ function RegistrationPage() {
           </div>
         </div>
       </form>
-    </div>
+    </main>
   );
 }
 

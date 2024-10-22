@@ -9,6 +9,7 @@ function SignupPage() {
   return (
     <SignLayout>
       <main
+        id="signUp"
         css={css`
           height: calc(100vh - 23rem - var(--adjust-vh));
         `}

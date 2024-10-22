@@ -5,6 +5,7 @@ import SortOrderSelect from './SortOrderSelect.jsx';
 import { useViewport } from '../contexts/ViewportContext.jsx';
 import c from '../constants.js';
 import Link from 'next/link';
+import SearchBar from './SearchBar';
 
 const style = {
   productOnSaleTitle: css`
@@ -15,7 +16,7 @@ const style = {
     gap: 1.2rem;
     grid-template-columns: 1fr 325px 133px 130px;
 
-    h3 {
+    h2 {
       font-weight: 700;
       font-size: 2rem;
       line-height: 3.2rem;
@@ -39,49 +40,7 @@ const style = {
       row-gap: 0.8rem;
     }
   `,
-  'search-query': css`
-    height: 4.2rem;
-    width: 32.5rem;
-    border-radius: 12px;
-    background-color: var(--gray-100);
-
-    padding: 0.9rem 1.6rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-
-    input {
-      border: none;
-      background-color: inherit;
-      width: 100%;
-      height: 100%;
-
-      font-size: 1.6rem;
-      font-weight: 400;
-      line-height: 2.6rem;
-
-      &::placeholder {
-        font-size: 1.6rem;
-        font-weight: 400;
-        line-height: 2.6rem;
-        color: var(--gray-400);
-      }
-
-      &:focus {
-        outline: 0;
-        color: var(--gray-800);
-      }
-    }
-
-    @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
-      width: 24.2rem;
-    }
-
-    @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
-      width: 28.8rem;
-    }
-  `,
-  'regist-button': css`
+  registButton: css`
     height: 4.2rem;
     background-color: var(--Primary-100);
     border-radius: 8px;
@@ -98,52 +57,40 @@ const style = {
       transform: translateX(-6.8rem);
     }
   `,
+  searchBarWrapper: css`
+    width: 32.5rem;
+  `,
 };
 
 function ProductOnSaleTitle({ onSearch, onSortOrderChange }) {
   const viewport = useViewport();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearchChange = e => {
-    setSearchQuery(e.target.value);
-  };
-  const handleSearch = e => {
-    if (e.key === 'Enter') onSearch(searchQuery);
-  };
 
   const registBtn = (
     <Link href="/registration">
-      <button css={style['regist-button']}>상품 등록하기</button>
+      <button id="registButton" css={style.registButton}>
+        상품 등록하기
+      </button>
     </Link>
   );
-  const searchQry = (
-    <div css={style['search-query']}>
-      <label htmlFor="search">
-        <img src="/Image/ic_search.svg" alt="searchIcon" />
-      </label>
-      <input
-        id="search"
-        type="text"
-        placeholder="검색할 상품을 입력해주세요"
-        value={searchQuery}
-        onChange={handleSearchChange}
-        onKeyDown={handleSearch}
-      />
+  const searchBar = (
+    <div id="searchBarWrapper" css={style.searchBarWrapper}>
+      <SearchBar onSearch={onSearch} />
     </div>
   );
+
   const sortOrderSelect = <SortOrderSelect onChange={onSortOrderChange} />;
 
   return viewport === c.VIEWPORT.MOBILE ? (
     <div css={style.productOnSaleTitle}>
-      <h3>판매 중인 상품</h3>
+      <h2>판매 중인 상품</h2>
       {registBtn}
-      {searchQry}
+      {searchBar}
       {sortOrderSelect}
     </div>
   ) : (
     <div css={style.productOnSaleTitle}>
-      <h3>판매 중인 상품</h3>
-      {searchQry}
+      <h2>판매 중인 상품</h2>
+      {searchBar}
       {registBtn}
       {sortOrderSelect}
     </div>

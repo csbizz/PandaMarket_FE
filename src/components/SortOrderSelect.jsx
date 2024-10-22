@@ -5,7 +5,7 @@ import { useViewport } from '../contexts/ViewportContext.jsx';
 import c from '../constants.js';
 
 const style = {
-  'sort-order': css`
+  sortOrder: css`
     height: 100%;
     width: 13rem;
     border-radius: 12px;
@@ -30,7 +30,7 @@ const style = {
     }
   `,
 
-  'sort-order-list': css`
+  sortOrderList: css`
     position: absolute;
     display: grid;
     grid-template-rows: repeat(2, 4.2rem);
@@ -45,7 +45,8 @@ const style = {
       cursor: pointer;
       border: 1px solid var(--gray-200);
       border-bottom: 0;
-      border-radius: 1.2rem 1.2rem 0 0;
+      border-top-left-radius: 1.2rem;
+      border-top-right-radius: 1.2rem;
       background-color: #ffffff;
       color: var(--gray-800);
       font-size: 1.6rem;
@@ -54,7 +55,8 @@ const style = {
 
       &:last-child {
         border-bottom: 1px solid var(--gray-200);
-        border-radius: 0 0 1.2rem 1.2rem;
+        border-bottom-left-radius: 1.2rem;
+        border-bottom-right-radius: 1.2rem;
       }
 
       &:hover {
@@ -83,13 +85,13 @@ function SortOrderSelect({ initialSortOrder = c.SORT_ORDER.RECENT, onChange }) {
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   return (
-    <div>
-      <div css={style['sort-order']} onClick={toggleDropdown}>
+    <div id="sortOrderSelect">
+      <div id="sortOrder" css={style.sortOrder} onClick={toggleDropdown}>
         {viewport !== c.VIEWPORT.MOBILE && c.SORT_ORDER_MSG[sortOrder]}
         <img src={viewport !== c.VIEWPORT.MOBILE ? '/Image/ic_arrow_down.svg' : '/Image/ic_sort.svg'} alt="sortOrderImg" />
       </div>
       {dropdownOpen && (
-        <ul css={style['sort-order-list']}>
+        <ul id="sortOrderList" css={style.sortOrderList}>
           {Object.values(c.SORT_ORDER).map(o => {
             return (
               <li onClick={() => handleOrderChange(o)} key={o}>

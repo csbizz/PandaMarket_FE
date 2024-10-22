@@ -36,7 +36,7 @@ function ItemsPage() {
 
   return (
     <>
-      <main css={style.itemsPage}>
+      <main id="items" css={style.itemsPage}>
         <div css={style.bestProductWrapper}>{/* <BestProducts /> */}</div>
         <ProductsOnSale />
       </main>
