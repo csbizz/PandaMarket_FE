@@ -5,8 +5,6 @@ import { css } from '@emotion/react';
 
 const style = {
   freeBoard: css`
-    width: 100%;
-    max-width: 120rem;
     margin: 0 auto;
     min-height: calc(var(--adjust-vh));
     padding-top: 2.4rem;

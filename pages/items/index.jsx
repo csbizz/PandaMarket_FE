@@ -9,9 +9,6 @@ import c from '@/src/constants.js';
 
 const style = {
   itemsPage: css`
-    width: 100%;
-    max-width: 120rem;
-    margin: 0 auto;
     padding-top: 2.4rem;
     padding-bottom: 14rem;
 

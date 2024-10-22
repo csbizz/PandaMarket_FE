@@ -17,6 +17,13 @@ body {
 
 main {
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  width: 120rem;
+  margin: 0 auto;
+}
+
+/* NOTE main 직후에 #landingPage가 오는 경우 */
+main:has(#landingPage) {
+  width: 100vw;
 }
 
 a {

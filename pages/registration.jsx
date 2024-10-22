@@ -9,9 +9,6 @@ const style = {
   registrationPage: css`
     padding-top: 2.6rem;
     padding-bottom: 16.2rem;
-    margin: 0 auto;
-    max-width: 120rem;
-    width: 100%;
 
     @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       margin: 1.8rem auto 19.4rem auto;
