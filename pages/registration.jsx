@@ -55,46 +55,12 @@ const style = {
   `,
   inputWrap: css`
     label {
-      font-size: 1.8rem;
       line-height: 2.6rem;
-      font-weight: 700;
-      color: var(--gray-800);
     }
 
-    input {
-      width: 100%;
-      border-radius: 12px;
-      height: 5.6rem;
-      padding: 1.6rem 2.4rem;
-      background-color: var(--gray-100);
-      border: 0;
-      margin-top: 1.6rem;
-
-      &:focus {
-        outline: thin solid var(--Primary-100);
-      }
-
-      &.error {
-        outline: thin solid var(--error-red);
-      }
-    }
-
+    input,
     textarea {
-      width: 100%;
-      border-radius: 12px;
-      height: 28.2rem;
-      padding: 1.6rem 2.4rem;
-      background-color: var(--gray-100);
-      border: 0;
       margin-top: 1.6rem;
-
-      &:focus {
-        outline: thin solid var(--Primary-100);
-      }
-
-      &.error {
-        outline: thin solid var(--error-red);
-      }
     }
 
     p {
@@ -185,13 +151,15 @@ function RegistrationPage() {
         </div>
         <div css={style.info}>
           <div css={style.inputWrap}>
-            <label htmlFor="name">상품명</label>
+            <label htmlFor="name" className="label">
+              상품명
+            </label>
             <input
               id="name"
               name="name"
               type="text"
               placeholder="상품명을 입력해주세요"
-              className={nameObj.isOK ? '' : 'error'}
+              className={nameObj.isOK ? `input` : `input error`}
               value={nameObj.value}
               onChange={e =>
                 setNameObj(prev => {
@@ -203,14 +171,16 @@ function RegistrationPage() {
             <p>{nameObj.errMsg}</p>
           </div>
           <div css={style.inputWrap}>
-            <label htmlFor="description">상품 소개</label>
+            <label htmlFor="description" className="label">
+              상품 소개
+            </label>
             <textarea
               id="description"
               name="description"
               cols="30"
               rows="10"
               placeholder="상품 소개를 입력해주세요"
-              className={descriptionObj.isOK ? '' : 'error'}
+              className={descriptionObj.isOK ? 'input' : 'input error'}
               value={descriptionObj.value}
               onChange={e =>
                 setDescriptionObj(prev => {
@@ -222,13 +192,15 @@ function RegistrationPage() {
             <p>{descriptionObj.errMsg}</p>
           </div>
           <div css={style.inputWrap}>
-            <label htmlFor="price">판매가격</label>
+            <label htmlFor="price" className="label">
+              판매가격
+            </label>
             <input
               id="price"
               name="price"
               type="number"
               placeholder="판매 가격을 입력해주세요"
-              className={priceObj.isOK ? '' : 'error'}
+              className={priceObj.isOK ? 'input' : 'input error'}
               value={priceObj.value}
               onChange={e =>
                 setPriceObj(prev => {
@@ -240,13 +212,15 @@ function RegistrationPage() {
             <p>{priceObj.errMsg}</p>
           </div>
           <div css={style.inputWrap}>
-            <label htmlFor="tag">태그</label>
+            <label htmlFor="tag" className="label">
+              태그
+            </label>
             <input
               id="tag"
               name="tag"
               type="text"
               placeholder="태그를 입력해주세요"
-              className={tagObj.isOK ? '' : `${style.error}`}
+              className={tagObj.isOK ? 'input' : `input error`}
               value={tagObj.value}
               onChange={e =>
                 setTagObj(prev => {

@@ -25,15 +25,9 @@ const style = {
         height: 5.6rem;
         border: 0;
         border-radius: 40px;
-        background-color: var(--Primary-100);
-        color: white;
         font-size: 2rem;
         line-height: 2.4rem;
         font-weight: 600;
-
-        &:disabled {
-          background-color: var(--gray-400);
-        }
       }
     }
 

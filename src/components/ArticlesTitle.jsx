@@ -21,9 +21,7 @@ const style = {
       height: 4.4rem;
       padding: 1.2rem 2.3rem;
       border-radius: 8px;
-      background-color: var(--Primary-100);
 
-      color: white;
       font-size: 1.6rem;
       font-weight: 600;
     }
@@ -46,7 +44,9 @@ export default function ArticlesTitle({ onSearch, onSortOrderChange }) {
       <div id="titleAndButton" css={style.titleAndButton}>
         <h2>게시글</h2>
         <Link href="/articles/post">
-          <button type="button">글쓰기</button>
+          <button type="button" className="button">
+            글쓰기
+          </button>
         </Link>
       </div>
       <div id="searchAndSort" css={style.searchAndSort}>

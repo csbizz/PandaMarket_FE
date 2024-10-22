@@ -21,7 +21,7 @@ function SignupPage() {
           <SignInput label="닉네임" type="text" placeholder="닉네임을 입력해주세요" />
           <SignInput label="비밀번호" type="password" placeholder="비밀번호를 입력해주세요" />
           <SignInput label="비밀번호 확인" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요" />
-          <button id="signupButton" type="button" disabled>
+          <button id="signupButton" type="button" className="button" disabled>
             회원가입
           </button>
         </form>

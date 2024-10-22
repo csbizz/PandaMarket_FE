@@ -4,10 +4,7 @@ import { css } from '@emotion/react';
 const style = {
   signInput: css`
     label {
-      font-size: 1.8rem;
       line-height: 2.148rem;
-      font-weight: 700;
-      color: var(--gray-800);
     }
 
     p {
@@ -30,21 +27,7 @@ const style = {
     }
 
     input {
-      width: 100%;
-      border-radius: 1.2rem;
-      height: 5.6rem;
       margin-top: 1.6rem;
-      padding: 2.4rem 1.6rem;
-      background-color: var(--gray-100);
-      border: 0;
-
-      &:focus {
-        outline: thin solid var(--Primary-100);
-      }
-
-      &.error {
-        outline: thin solid var(--error-red);
-      }
     }
   `,
 };
@@ -52,9 +35,11 @@ const style = {
 function SignInput({ label, type, placeholder }) {
   return (
     <div id="signInput" css={style.signInput}>
-      <label htmlFor={`for_${type}`}>{label}</label>
+      <label htmlFor={`for_${type}`} className="label">
+        {label}
+      </label>
       <div className="input-wrap">
-        <input id={`for_${type}`} type={type} placeholder={placeholder} />
+        <input id={`for_${type}`} type={type} placeholder={placeholder} className="input" />
         {type === 'password' && <img src="/Image/btn_visibility_on_24px.png" alt="비밀번호 표시" />}
       </div>
       <p></p>

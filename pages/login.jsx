@@ -17,7 +17,7 @@ function LoginPage() {
         <form id="loginField">
           <SignInput label="이메일" type="email" placeholder="이메일을 입력해주세요" />
           <SignInput label="비밀번호" type="password" placeholder="비밀번호를 입력해주세요" />
-          <button id="loginButton" type="button" disabled>
+          <button id="loginButton" type="button" className="button" disabled>
             로그인
           </button>
         </form>
