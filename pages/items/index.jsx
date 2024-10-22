@@ -12,13 +12,17 @@ const style = {
     width: 100%;
     max-width: 120rem;
     margin: 0 auto;
+    padding-top: 2.4rem;
+    padding-bottom: 14rem;
 
     @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
-      padding: 0 2.4rem;
+      padding-right: 2.4rem;
+      padding-left: 2.4rem;
     }
 
     @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
-      padding: 0 1.6rem;
+      padding-right: 1.6rem;
+      padding-left: 1.6rem;
     }
   `,
   bestProductWrapper: css`
@@ -36,10 +40,10 @@ function ItemsPage() {
 
   return (
     <>
-      <main id="items" css={style.itemsPage}>
-        <div css={style.bestProductWrapper}>{/* <BestProducts /> */}</div>
+      <div id="items" css={style.itemsPage}>
+        {/* <div css={style.bestProductWrapper}><BestProducts /></div> */}
         <ProductsOnSale />
-      </main>
+      </div>
       {isLoading && <Modal message="로딩 중입니다." noButton />}
       {err && <Modal message={err.message} />}
     </>

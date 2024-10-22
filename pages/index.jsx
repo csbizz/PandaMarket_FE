@@ -148,7 +148,7 @@ function LandingPage() {
   const viewport = useViewport();
 
   return (
-    <main id="landingPage">
+    <div id="landingPage">
       <section css={style.banner} id={'topBanner'}>
         <div css={style.mBody} className="banner">
           <h1 css={style.h1}>
@@ -225,7 +225,7 @@ function LandingPage() {
           </h1>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

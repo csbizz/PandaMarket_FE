@@ -26,7 +26,9 @@ export default function App({ Component, pageProps, emotionCache = clientSideEmo
       <CacheProvider value={emotionCache}>
         <GlobalContextProvider>
           <Header />
-          <Component {...pageProps} />
+          <main>
+            <Component {...pageProps} />
+          </main>
           <Footer />
         </GlobalContextProvider>
       </CacheProvider>

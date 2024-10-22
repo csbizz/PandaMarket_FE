@@ -43,7 +43,7 @@ const style = {
     }
   `,
   paginationWrapper: css`
-    margin: 4.3rem auto 14rem;
+    margin: 4.3rem auto 0;
 
     @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       margin-bottom: 16.5rem;

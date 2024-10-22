@@ -8,10 +8,10 @@ const style = {
     width: 100%;
     max-width: 120rem;
     margin: 0 auto;
-    min-height: calc(var(--adjust-vh) - 2.4rem);
+    min-height: calc(var(--adjust-vh));
+    padding-top: 2.4rem;
   `,
   bestArticlesWrapper: css`
-    margin-top: 2.4rem;
     margin-bottom: 4rem;
   `,
   articlesWrapper: css`
@@ -22,14 +22,14 @@ const style = {
 
 function FreeBoard() {
   return (
-    <main id="freeBoard" css={style.freeBoard}>
+    <div id="freeBoard" css={style.freeBoard}>
       <div id="bestArticlesWrapper" css={style.bestArticlesWrapper}>
         <BestArticles />
       </div>
       <div id="articlesWrapper" css={style.articlesWrapper}>
         <Articles />
       </div>
-    </main>
+    </div>
   );
 }
 

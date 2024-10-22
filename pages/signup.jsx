@@ -8,14 +8,14 @@ import Image from 'next/image';
 
 const style = {
   signUp: css`
-    height: calc(var(--adjust-vh) - 4rem);
+    padding-bottom: 7rem;
   `,
 };
 
 function SignupPage() {
   return (
     <SignLayout>
-      <main id="signUp" css={style.signUp}>
+      <div id="signUp" css={style.signUp}>
         <form id="loginField">
           <SignInput label="이메일" type="email" placeholder="이메일을 입력해주세요" />
           <SignInput label="닉네임" type="text" placeholder="닉네임을 입력해주세요" />
@@ -47,7 +47,7 @@ function SignupPage() {
           <div className="button">확인</div>
         </div>
       </div> */}
-      </main>
+      </div>
     </SignLayout>
   );
 }

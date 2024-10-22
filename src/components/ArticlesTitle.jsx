@@ -45,8 +45,8 @@ export default function ArticlesTitle({ onSearch, onSortOrderChange }) {
     <div id="articlesTitle">
       <div id="titleAndButton" css={style.titleAndButton}>
         <h2>게시글</h2>
-        <Link href="/">
-          <button>글쓰기</button>
+        <Link href="/articles/post">
+          <button type="button">글쓰기</button>
         </Link>
       </div>
       <div id="searchAndSort" css={style.searchAndSort}>

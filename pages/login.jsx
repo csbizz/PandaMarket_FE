@@ -7,15 +7,13 @@ import SignLayout from '@/src/layouts/SignLayout';
 import Image from 'next/image';
 
 const style = {
-  login: css`
-    height: calc(var(--adjust-vh) - 4rem);
-  `,
+  login: css``,
 };
 
 function LoginPage() {
   return (
     <SignLayout>
-      <main id="login" css={style.login}>
+      <div id="login" css={style.login}>
         <form id="loginField">
           <SignInput label="이메일" type="email" placeholder="이메일을 입력해주세요" />
           <SignInput label="비밀번호" type="password" placeholder="비밀번호를 입력해주세요" />
@@ -45,7 +43,7 @@ function LoginPage() {
           <div class="button">확인</div>
         </div>
       </div> */}
-      </main>
+      </div>
     </SignLayout>
   );
 }

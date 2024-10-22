@@ -85,9 +85,6 @@ export default function Articles() {
       </div>
       <div id="articleList" css={style.articleList}>
         <Article />
-        <Article />
-        <Article />
-        <Article />
       </div>
     </div>
   );

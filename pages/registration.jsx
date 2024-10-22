@@ -7,10 +7,11 @@ import c from '@/src/constants.js';
 
 const style = {
   registrationPage: css`
-    margin: 2.6rem auto 16.2rem auto;
+    padding-top: 2.6rem;
+    padding-bottom: 16.2rem;
+    margin: 0 auto;
     max-width: 120rem;
     width: 100%;
-    height: 83rem;
 
     @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       margin: 1.8rem auto 19.4rem auto;
@@ -177,7 +178,7 @@ function RegistrationPage() {
   useEffect(() => setCanSubmit(false), []); // 최초 렌더링시 등록 버튼 비활성화
 
   return (
-    <main id="registration" css={style.registrationPage}>
+    <div id="registration" css={style.registrationPage}>
       <form>
         <div css={style.title}>
           <p>상품 등록하기</p>
@@ -267,7 +268,7 @@ function RegistrationPage() {
           </div>
         </div>
       </form>
-    </main>
+    </div>
   );
 }
 

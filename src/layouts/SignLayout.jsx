@@ -4,9 +4,9 @@ import c from '../constants.js';
 
 const style = {
   signLayout: css`
-    margin-top: 4rem;
+    padding-top: 4rem;
 
-    main {
+    > div {
       display: flex;
       flex-direction: column;
       align-items: center;
