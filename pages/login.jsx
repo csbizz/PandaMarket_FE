@@ -5,15 +5,16 @@ import Link from 'next/link';
 import SignInput from '@/src/components/SignInput.jsx';
 import SignLayout from '@/src/layouts/SignLayout';
 
+const style = {
+  login: css`
+    height: calc(var(--adjust-vh) - 4rem);
+  `,
+};
+
 function LoginPage() {
   return (
     <SignLayout>
-      <main
-        id="login"
-        css={css`
-          height: calc(100vh - 23rem - var(--adjust-vh));
-        `}
-      >
+      <main id="login" css={style.login}>
         <form id="loginField">
           <SignInput label="이메일" type="email" placeholder="이메일을 입력해주세요" />
           <SignInput label="비밀번호" type="password" placeholder="비밀번호를 입력해주세요" />

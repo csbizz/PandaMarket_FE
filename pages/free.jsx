@@ -8,6 +8,7 @@ const style = {
     width: 100%;
     max-width: 120rem;
     margin: 0 auto;
+    min-height: calc(var(--adjust-vh) - 2.4rem);
   `,
   bestArticlesWrapper: css`
     margin-top: 2.4rem;
@@ -15,7 +16,7 @@ const style = {
   `,
   articlesWrapper: css`
     margin-top: 4rem;
-    margin-bottom: 29.3rem;
+    margin-bottom: 2.4rem;
   `,
 };
 

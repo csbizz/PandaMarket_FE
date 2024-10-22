@@ -15,5 +15,5 @@
   --gray-800: #1f2937;
   --gray-900: #111827;
 
-  --adjust-vh: 40px;
+  --adjust-vh: 100vh - 23rem;
 }
