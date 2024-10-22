@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import TagButton from '@/src/components/TagButton.jsx';
 import useValidation from '@/src/hooks/useValidation.js';
 import c from '@/src/constants.js';
+import Input from '@/src/components/Input';
 
 const style = {
   registrationPage: css`
@@ -83,93 +84,69 @@ const style = {
 
 const emptyInputObj = {
   value: '',
+  name: '',
+  type: '',
   errMsg: '',
 };
 
 export default function RegistrationPage() {
   const validation = useValidation();
-  const [nameObj, setNameObj] = useState({ name: 'name', ...emptyInputObj });
-  const [descriptionObj, setDescriptionObj] = useState({ name: 'description', ...emptyInputObj });
-  const [priceObj, setPriceObj] = useState({ name: 'price', ...emptyInputObj });
-  const [tagObj, setTagObj] = useState({ name: 'tag', ...emptyInputObj });
+  const [nameObj, setNameObj] = useState({ ...emptyInputObj, name: 'name', type: 'text' });
+  const [descriptionObj, setDescriptionObj] = useState({ ...emptyInputObj, name: 'description', type: 'text' });
+  const [priceObj, setPriceObj] = useState({ ...emptyInputObj, name: 'price', type: 'number' });
+  const [tagObj, setTagObj] = useState({ ...emptyInputObj, name: 'tag', type: 'text' });
   const [tags, setTags] = useState([]);
   const [validationCheck, setValidationCheck] = useState({});
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const handleValidation = e => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const handleValidation = inputObj => {
+    const { name, value } = inputObj;
 
     // NOTE Validation
     const errMsg = validation(name, value);
 
     // NOTE count validation
-    switch (name) {
-      case 'name':
-        setValidationCheck(prev => {
-          return { ...prev, nameCheck: true };
-        });
-        break;
-      case 'description':
-        setValidationCheck(prev => {
-          return { ...prev, descCheck: true };
-        });
-        break;
-      case 'price':
-        setValidationCheck(prev => {
-          return { ...prev, priceCheck: true };
-        });
-        break;
-      case 'tag':
-        setValidationCheck(prev => {
-          return { ...prev, tagCheck: true };
-        });
-        break;
-    }
+    setValidationCheck(prev => {
+      return { ...prev, [name]: true };
+    });
 
     // NOTE Set input Ojbect
+    let setInputObj = null;
     switch (name) {
       case 'name':
-        setNameObj(prev => {
-          return { ...prev, errMsg };
-        });
+        setInputObj = setNameObj;
         break;
       case 'description':
-        setDescriptionObj(prev => {
-          return { ...prev, errMsg };
-        });
+        setInputObj = setDescriptionObj;
         break;
       case 'price':
-        setPriceObj(prev => {
-          return { ...prev, errMsg };
-        });
+        setInputObj = setPriceObj;
         break;
       case 'tag':
-        setTagObj(prev => {
-          return { ...prev, errMsg };
-        });
+        setInputObj = setTagObj;
         break;
     }
+    setInputObj(prev => {
+      return { ...prev, errMsg, value };
+    });
 
     // NOTE errMsg가 없음 = validation을 통과함.
     return !errMsg;
   };
-  const handleAddTag = e => {
+  const handleAddTag = (e, inputObj) => {
     if (e.key === 'Enter') {
+      const { value } = inputObj;
       if (tags.length >= 5)
         return setTagObj(prev => {
           return { ...prev, errMsg: '태그는 5개까지 입력 가능합니다.' };
         });
-      if (tags.includes(e.target.value))
+      if (tags.includes(value))
         return setTagObj(prev => {
           return { ...prev, errMsg: '같은 태그가 존재합니다' };
         });
       if (!handleValidation(e)) return;
 
-      setTags(prev => [...prev, e.target.value]);
-      setTagObj(prev => {
-        return { ...prev, value: '' };
-      });
+      setTags(prev => [...prev, value]);
     }
   };
   const handleRemoveTag = name => {
@@ -199,90 +176,26 @@ export default function RegistrationPage() {
           </button>
         </div>
         <div css={style.info}>
-          <div css={style.inputWrap}>
-            <label htmlFor="name" className="label">
-              상품명
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="상품명을 입력해주세요"
-              className={nameObj.errMsg ? `input error` : `input`}
-              value={nameObj.value}
-              onChange={e =>
-                setNameObj(prev => {
-                  return { ...prev, value: e.target.value };
-                })
-              }
-              onBlur={handleValidation}
-            />
-            <p>{nameObj.errMsg}</p>
-          </div>
-          <div css={style.inputWrap}>
-            <label htmlFor="description" className="label">
-              상품 소개
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              placeholder="상품 소개를 입력해주세요"
-              className={descriptionObj.errMsg ? 'input error' : 'input'}
-              value={descriptionObj.value}
-              onChange={e =>
-                setDescriptionObj(prev => {
-                  return { ...prev, value: e.target.value };
-                })
-              }
-              onBlur={handleValidation}
-            ></textarea>
-            <p>{descriptionObj.errMsg}</p>
-          </div>
-          <div css={style.inputWrap}>
-            <label htmlFor="price" className="label">
-              판매가격
-            </label>
-            <input
-              id="price"
-              name="price"
-              type="number"
-              placeholder="판매 가격을 입력해주세요"
-              className={priceObj.errMsg ? 'input error' : 'input'}
-              value={priceObj.value}
-              onChange={e =>
-                setPriceObj(prev => {
-                  return { ...prev, value: e.target.value };
-                })
-              }
-              onBlur={handleValidation}
-            />
-            <p>{priceObj.errMsg}</p>
-          </div>
-          <div css={style.inputWrap}>
-            <label htmlFor="tag" className="label">
-              태그
-            </label>
-            <input
-              id="tag"
-              name="tag"
-              type="text"
-              placeholder="태그를 입력해주세요"
-              className={tagObj.errMsg ? 'input error' : `input`}
-              value={tagObj.value}
-              onChange={e =>
-                setTagObj(prev => {
-                  return { ...prev, value: e.target.value };
-                })
-              }
-              onBlur={handleValidation}
-              onKeyDown={handleAddTag}
-            />
-            <p className="tag-error">{tagObj.errMsg}</p>
-            <div className="tag-button-wrap" css={style.tagButtonWrap}>
-              {tags.map(tag => (
-                <TagButton name={tag} key={tag} onClick={handleRemoveTag} />
-              ))}
-            </div>
+          <Input inputObj={nameObj} label={'상품명'} placeholder={'상품명을 입력해주세요'} onBlur={handleValidation} />
+          <Input
+            inputObj={descriptionObj}
+            label={'상품 소개'}
+            placeholder={'상품 소개를 입력해주세요'}
+            onBlur={handleValidation}
+            textarea
+          />
+          <Input inputObj={priceObj} label={'판매가격'} placeholder={'판매 가격을 입력해주세요'} onBlur={handleValidation} />
+          <Input
+            inputObj={tagObj}
+            label={'태그'}
+            placeholder={'태그를 입력해주세요'}
+            onBlur={handleValidation}
+            onKeyDown={handleAddTag}
+          />
+          <div className="tag-button-wrap" css={style.tagButtonWrap}>
+            {tags.map(tag => (
+              <TagButton name={tag} key={tag} onClick={handleRemoveTag} />
+            ))}
           </div>
         </div>
       </form>

@@ -28,7 +28,7 @@ const style = {
   `,
 };
 
-export default function Input({ inputObj, label, placeholder, onBlur, textarea = false }) {
+export default function Input({ inputObj, label, placeholder, onBlur, onKeyDown, textarea = false }) {
   const { value: inputValue, name, type, errMsg } = inputObj;
   const classNames = errMsg ? 'input error' : 'input';
   const [value, setValue] = useState(inputValue);
@@ -38,6 +38,10 @@ export default function Input({ inputObj, label, placeholder, onBlur, textarea =
   };
   const handleBlur = () => {
     onBlur({ value, name, type, errMsg });
+  };
+  const handleKeyDown = e => {
+    onKeyDown(e, { value, name, type, errMsg });
+    setValue('');
   };
 
   return textarea ? (
@@ -50,9 +54,11 @@ export default function Input({ inputObj, label, placeholder, onBlur, textarea =
         name={name}
         type={type}
         placeholder={placeholder}
-        className="input"
+        className={classNames}
         value={value}
         onChange={handleChange}
+        onBlur={onBlur ? handleBlur : null}
+        onKeyDown={onKeyDown ? handleKeyDown : null}
       ></textarea>
       <p>{errMsg}</p>
     </div>
@@ -66,9 +72,11 @@ export default function Input({ inputObj, label, placeholder, onBlur, textarea =
         name={name}
         type={type}
         placeholder={placeholder}
-        className="input"
+        className={classNames}
         value={value}
         onChange={handleChange}
+        onBlur={onBlur ? handleBlur : null}
+        onKeyDown={onKeyDown ? handleKeyDown : null}
       />
       <p>{errMsg}</p>
     </div>
