@@ -83,20 +83,17 @@ const style = {
 
 const init = {
   value: '',
-  isOK: true,
   errMsg: '',
 };
 
 export default function RegistrationPage() {
   const validation = useValidation();
   const [nameObj, setNameObj] = useState({ name: 'name', ...init });
-  const [descriptionObj, setDescriptionObj] = useState({
-    name: 'description',
-    ...init,
-  });
+  const [descriptionObj, setDescriptionObj] = useState({ name: 'description', ...init });
   const [priceObj, setPriceObj] = useState({ name: 'price', ...init });
   const [tagObj, setTagObj] = useState({ name: 'tag', ...init });
   const [tags, setTags] = useState([]);
+  const [validationCheck, setValidationCheck] = useState({});
   const [canSubmit, setCanSubmit] = useState(false);
 
   const handleValidation = e => {
@@ -104,14 +101,33 @@ export default function RegistrationPage() {
     const value = e.target.value;
     switch (name) {
       case 'name':
-        return validation(name, value, setNameObj);
+        setValidationCheck(prev => {
+          return { ...prev, nameCheck: true };
+        });
+        return setNameObj(prev => {
+          return { ...prev, errMsg: validation(name, value) };
+        });
       case 'description':
-        return validation(name, value, setDescriptionObj);
+        setValidationCheck(prev => {
+          return { ...prev, descCheck: true };
+        });
+        return setDescriptionObj(prev => {
+          return { ...prev, errMsg: validation(name, value) };
+        });
       case 'price':
-        return validation(name, value, setPriceObj);
+        setValidationCheck(prev => {
+          return { ...prev, priceCheck: true };
+        });
+        return setPriceObj(prev => {
+          return { ...prev, errMsg: validation(name, value) };
+        });
       case 'tag':
-        return validation(name, value, setTagObj);
-      default:
+        setValidationCheck(prev => {
+          return { ...prev, tagCheck: true };
+        });
+        return setTagObj(prev => {
+          return { ...prev, errMsg: validation(name, value) };
+        });
     }
   };
   const handleAddTag = e => {
@@ -135,10 +151,10 @@ export default function RegistrationPage() {
   };
 
   useEffect(() => {
-    setCanSubmit(nameObj.isOK && descriptionObj.isOK && priceObj.isOK && tagObj.isOK);
-  }, [nameObj.isOK, descriptionObj.isOK, priceObj.isOK, tagObj.isOK]);
+    if (Object.keys(validationCheck).length !== 4) return setCanSubmit(false);
 
-  useEffect(() => setCanSubmit(false), []); // 최초 렌더링시 등록 버튼 비활성화
+    return setCanSubmit(!(nameObj.errMsg || descriptionObj.errMsg || priceObj.errMsg || tagObj.errMsg));
+  }, [nameObj.errMsg, descriptionObj.errMsg, priceObj.errMsg, tagObj.errMsg, validationCheck]);
 
   return (
     <div id="registration" css={style.registrationPage}>
@@ -159,7 +175,7 @@ export default function RegistrationPage() {
               name="name"
               type="text"
               placeholder="상품명을 입력해주세요"
-              className={nameObj.isOK ? `input` : `input error`}
+              className={nameObj.errMsg ? `input error` : `input`}
               value={nameObj.value}
               onChange={e =>
                 setNameObj(prev => {
@@ -177,10 +193,8 @@ export default function RegistrationPage() {
             <textarea
               id="description"
               name="description"
-              cols="30"
-              rows="10"
               placeholder="상품 소개를 입력해주세요"
-              className={descriptionObj.isOK ? 'input' : 'input error'}
+              className={descriptionObj.errMsg ? 'input error' : 'input'}
               value={descriptionObj.value}
               onChange={e =>
                 setDescriptionObj(prev => {
@@ -200,7 +214,7 @@ export default function RegistrationPage() {
               name="price"
               type="number"
               placeholder="판매 가격을 입력해주세요"
-              className={priceObj.isOK ? 'input' : 'input error'}
+              className={priceObj.errMsg ? 'input error' : 'input'}
               value={priceObj.value}
               onChange={e =>
                 setPriceObj(prev => {
@@ -220,7 +234,7 @@ export default function RegistrationPage() {
               name="tag"
               type="text"
               placeholder="태그를 입력해주세요"
-              className={tagObj.isOK ? 'input' : `input error`}
+              className={tagObj.errMsg ? 'input error' : `input`}
               value={tagObj.value}
               onChange={e =>
                 setTagObj(prev => {

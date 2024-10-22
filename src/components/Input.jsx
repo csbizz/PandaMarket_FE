@@ -1,63 +1,76 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useState } from 'react';
 
 const style = {
-  signInput: css`
+  input: css`
     label {
-      line-height: 2.148rem;
+      line-height: 2.6rem;
     }
 
     p {
-      font-size: 1.5rem;
-      line-height: 1.79rem;
+      font-size: 1.4rem;
+      line-height: 2.4rem;
       font-weight: 600;
       color: var(--error-red);
       margin-top: 0.8rem;
       margin-left: 1.6rem;
-    }
 
-    .input-wrap {
-      position: relative;
-
-      img {
-        position: absolute;
-        right: 2.4rem;
-        bottom: 1.6rem;
+      &.tag-error {
+        margin-bottom: 0.8rem;
       }
     }
 
-    input {
+    input,
+    textarea {
       margin-top: 1.6rem;
     }
   `,
 };
 
-export default function Input({ label, type, placeholder }) {
-  return (
-    <div id="signInput" css={style.signInput}>
-      <label htmlFor={`for_${type}`} className="label">
+export default function Input({ inputObj, label, placeholder, onBlur, textarea = false }) {
+  const { value: inputValue, name, type, errMsg } = inputObj;
+  const classNames = errMsg ? 'input error' : 'input';
+  const [value, setValue] = useState(inputValue);
+
+  const handleChange = e => {
+    setValue(e.target.value);
+  };
+  const handleBlur = () => {
+    onBlur({ value, name, type, errMsg });
+  };
+
+  return textarea ? (
+    <div id="input" css={style.input}>
+      <label htmlFor={name} className="label">
         {label}
       </label>
-      <div className="input-wrap">
-        <input id={`for_${type}`} type={type} placeholder={placeholder} className="input" />
-        {type === 'password' && <img src="/Image/btn_visibility_on_24px.png" alt="비밀번호 표시" />}
-      </div>
-      <p></p>
+      <textarea
+        id={name}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        className="input"
+        value={value}
+        onChange={handleChange}
+      ></textarea>
+      <p>{errMsg}</p>
+    </div>
+  ) : (
+    <div id="input" css={style.input}>
+      <label htmlFor={name} className="label">
+        {label}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        className="input"
+        value={value}
+        onChange={handleChange}
+      />
+      <p>{errMsg}</p>
     </div>
   );
-}
-
-{
-  /* <div className="label-wrap">
-  <label className="input__id">
-    이메일
-    <br />
-    <input
-      type="email"
-      placeholder="이메일을 입력해주세요"
-      className="js-input__id"
-    />
-    <p className="error-msg js-error-msg"></p>
-  </label>
-</div> */
 }
