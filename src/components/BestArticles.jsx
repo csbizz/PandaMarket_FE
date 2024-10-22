@@ -95,7 +95,7 @@ function BestArticle() {
           <span className="heart">9999+</span>
         </div>
         <div>
-          <p>2024. 04. 16</p>
+          <p className="date">2024. 04. 16</p>
         </div>
       </div>
     </div>
