@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import SignInput from '@/src/components/SignInput.jsx';
 import SignLayout from '@/src/layouts/SignLayout';
+import Image from 'next/image';
 
 const style = {
   login: css`
@@ -26,10 +27,10 @@ function LoginPage() {
           <span>간편 로그인하기</span>
           <div>
             <Link href="https://www.google.com/">
-              <img src="/Image/GoogleBtn.png" alt="구글 버튼" />
+              <Image src="/Image/GoogleBtn.png" alt="구글 버튼" width={42} height={42} />
             </Link>
             <Link href="https://www.kakaocorp.com/page/">
-              <img src="/Image/KakaoTalkBtn.png" alt="카카오톡 버튼" />
+              <Image src="/Image/KakaoTalkBtn.png" alt="카카오톡 버튼" width={42} height={42} />
             </Link>
           </div>
         </section>

@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { useViewport } from '@/src/contexts/ViewportContext.jsx';
 import c from '@/src/constants.js';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const style = {
   h1: css`
@@ -70,10 +71,21 @@ const style = {
     display: flex;
     align-items: center;
     gap: 5%;
+    margin: 0 auto;
 
     &.reverse {
       flex-direction: row-reverse;
       text-align: right;
+    }
+
+    .imageWrapper {
+      position: relative;
+      width: 588px;
+      height: 444px;
+
+      img {
+        object-fit: cover;
+      }
     }
 
     @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
@@ -84,7 +96,7 @@ const style = {
         flex-direction: column;
       }
 
-      img {
+      .imageWrapper {
         width: 696px;
       }
     }
@@ -92,7 +104,7 @@ const style = {
     @media (max-width: ${c.BREAKPOINTS.MOBILE}px) {
       padding: 3.2rem 1.6rem;
 
-      img {
+      .imageWrapper {
         width: 100%;
       }
     }
@@ -138,20 +150,22 @@ function LandingPage() {
   return (
     <main id="landingPage">
       <section css={style.banner} id={'topBanner'}>
-        <div css={style.mBody} className={'banner'}>
+        <div css={style.mBody} className="banner">
           <h1 css={style.h1}>
             일상의 모든 물건을 {viewport !== c.VIEWPORT.TABLET && <br />}
             거래해 보세요
           </h1>
-          <Link css={style.longButton} className={'button'} href="/items/">
+          <Link css={style.longButton} className="button" href="/items/">
             구경하러 가기
           </Link>
         </div>
       </section>
       <section css={style.mBody}>
         <div css={style.card}>
-          <img src="/Image/Img_home_01.png" alt="Hot Item" />
-          <div css={style.cardText}>
+          <div className="imageWrapper">
+            <Image fill src="/Image/Img_home_01.png" alt="Hot Item" />
+          </div>
+          <div className="card-text" css={style.cardText}>
             <h2>Hot item</h2>
             <h1 css={style.h1}>
               인기 상품을
@@ -165,9 +179,11 @@ function LandingPage() {
             </p>
           </div>
         </div>
-        <div css={style.card} className={'reverse'}>
-          <img src="/Image/Img_home_02.png" alt="Search" />
-          <div css={style.cardText}>
+        <div css={style.card} className="reverse">
+          <div className="imageWrapper">
+            <Image fill src="/Image/Img_home_02.png" alt="Search" />
+          </div>
+          <div className="card-text" css={style.cardText}>
             <h2>Search</h2>
             <h1 css={style.h1}>
               구매를 원하는
@@ -182,8 +198,10 @@ function LandingPage() {
           </div>
         </div>
         <div css={style.card}>
-          <img src="/Image/Img_home_03.png" alt="Register" />
-          <div css={style.cardText}>
+          <div className="imageWrapper">
+            <Image fill src="/Image/Img_home_03.png" alt="Register" />
+          </div>
+          <div className="card-text" css={style.cardText}>
             <h2>Register</h2>
             <h1 css={style.h1}>
               판매를 원하는
@@ -199,7 +217,7 @@ function LandingPage() {
         </div>
       </section>
       <section css={style.banner} id={'bottomBanner'}>
-        <div css={style.mBody} className={'banner'}>
+        <div css={style.mBody} className="banner">
           <h1 css={style.h1}>
             믿을 수 있는
             <br />

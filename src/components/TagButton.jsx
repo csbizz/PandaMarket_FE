@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import Image from 'next/image';
 
 const style = {
   tagButton: css`
@@ -25,7 +26,7 @@ function TagButton({ name, onClick }) {
   return (
     <button id="tagButton" css={style.tagButton} type="button" onClick={handleClick}>
       {`#${name}`}
-      <img src="/Image/ic_X.png" alt="X" />
+      <Image src="/Image/ic_X.png" alt="X" width={22} height={24} />
     </button>
   );
 }

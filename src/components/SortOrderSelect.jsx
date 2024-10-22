@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { useState } from 'react';
 import { useViewport } from '../contexts/ViewportContext.jsx';
 import c from '../constants.js';
+import Image from 'next/image';
 
 const style = {
   sortOrder: css`
@@ -88,7 +89,12 @@ function SortOrderSelect({ initialSortOrder = c.SORT_ORDER.RECENT, onChange }) {
     <div id="sortOrderSelect">
       <div id="sortOrder" css={style.sortOrder} onClick={toggleDropdown}>
         {viewport !== c.VIEWPORT.MOBILE && c.SORT_ORDER_MSG[sortOrder]}
-        <img src={viewport !== c.VIEWPORT.MOBILE ? '/Image/ic_arrow_down.svg' : '/Image/ic_sort.svg'} alt="sortOrderImg" />
+        <Image
+          src={viewport !== c.VIEWPORT.MOBILE ? '/Image/ic_arrow_down.svg' : '/Image/ic_sort.svg'}
+          alt="sortOrderImg"
+          width={24}
+          height={24}
+        />
       </div>
       {dropdownOpen && (
         <ul id="sortOrderList" css={style.sortOrderList}>

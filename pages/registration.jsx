@@ -55,7 +55,7 @@ const style = {
       gap: 2.4rem;
     }
   `,
-  'input-wrap': css`
+  inputWrap: css`
     label {
       font-size: 1.8rem;
       line-height: 2.6rem;
@@ -106,9 +106,13 @@ const style = {
       color: var(--error-red);
       margin-top: 0.8rem;
       margin-left: 1.6rem;
+
+      &.tag-error {
+        margin-bottom: 0.8rem;
+      }
     }
   `,
-  'tag-button-wrap': css`
+  tagButtonWrap: css`
     margin-top: 1.4rem;
   `,
 };
@@ -182,7 +186,7 @@ function RegistrationPage() {
           </button>
         </div>
         <div css={style.info}>
-          <div css={style['input-wrap']}>
+          <div css={style.inputWrap}>
             <label htmlFor="name">상품명</label>
             <input
               id="name"
@@ -200,7 +204,7 @@ function RegistrationPage() {
             />
             <p>{nameObj.errMsg}</p>
           </div>
-          <div css={style['input-wrap']}>
+          <div css={style.inputWrap}>
             <label htmlFor="description">상품 소개</label>
             <textarea
               id="description"
@@ -219,7 +223,7 @@ function RegistrationPage() {
             ></textarea>
             <p>{descriptionObj.errMsg}</p>
           </div>
-          <div css={style['input-wrap']}>
+          <div css={style.inputWrap}>
             <label htmlFor="price">판매가격</label>
             <input
               id="price"
@@ -237,7 +241,7 @@ function RegistrationPage() {
             />
             <p>{priceObj.errMsg}</p>
           </div>
-          <div css={style['input-wrap']}>
+          <div css={style.inputWrap}>
             <label htmlFor="tag">태그</label>
             <input
               id="tag"
@@ -254,14 +258,8 @@ function RegistrationPage() {
               onBlur={handleValidation}
               onKeyDown={handleAddTag}
             />
-            <p
-              css={css`
-                margin-bottom: 0.8rem;
-              `}
-            >
-              {tagObj.errMsg}
-            </p>
-            <div className="tag-button-wrap">
+            <p className="tag-error">{tagObj.errMsg}</p>
+            <div className="tag-button-wrap" css={style.tagButtonWrap}>
               {tags.map(tag => (
                 <TagButton name={tag} key={tag} onClick={handleRemoveTag} />
               ))}

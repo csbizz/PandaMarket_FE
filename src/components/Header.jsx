@@ -4,16 +4,13 @@ import c from '../constants';
 import Link from 'next/link';
 import { useViewport } from '../contexts/ViewportContext';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const style = {
   header: css`
     padding: 0 20rem;
     height: 7rem;
     border-bottom: 1px solid #dfdfdf;
-
-    img {
-      width: 153px;
-    }
 
     @media (max-width: ${c.BREAKPOINTS.TABLET}px) {
       padding-left: 2.4rem;
@@ -60,7 +57,12 @@ function Header() {
   return (
     <header css={style.header}>
       <Link href="/">
-        <img src={viewport === c.VIEWPORT.MOBILE ? '/Image/small_logo.png' : '/Image/logo.png'} alt="판다마켓 로고" />
+        <Image
+          src={viewport === c.VIEWPORT.MOBILE ? '/Image/small_logo.png' : '/Image/logo.png'}
+          alt="판다마켓 로고"
+          width={153}
+          height={viewport === c.VIEWPORT.MOBILE ? 75.75 : 51}
+        />
       </Link>
       <nav css={style.topNav}>
         <Link href="/free" style={firstPath === 'free' ? { color: '#3692ff' } : {}}>

@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import c from '@/src/constants';
+import Image from 'next/image';
 
 const style = {
   searchBar: css`
@@ -60,7 +61,7 @@ export default function SearchBar({ onSearch }) {
   return (
     <div id="searchBar" css={style.searchBar}>
       <label htmlFor="search">
-        <img src="/Image/ic_search.svg" alt="searchIcon" />
+        <Image src="/Image/ic_search.svg" alt="searchIcon" width={24} height={24} />
       </label>
       <input
         id="search"

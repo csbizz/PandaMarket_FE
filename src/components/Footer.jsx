@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import c from '../constants.js';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const style = {
   footer: css`
@@ -28,11 +29,6 @@ const style = {
   snsLink: css`
     display: flex;
     gap: 1.2rem;
-
-    img {
-      width: 20px;
-      height: 20px;
-    }
   `,
 };
 
@@ -48,16 +44,16 @@ function Footer() {
       </div>
       <div id="snsLink" css={style.snsLink}>
         <Link href="https://www.facebook.com/">
-          <img src="/Image/ic_facebook.png" alt="facebook" />
+          <Image src="/Image/ic_facebook.png" alt="facebook" width={20} height={20} />
         </Link>
         <Link href="https://twitter.com/home">
-          <img src="/Image/ic_twitter.png" alt="twitter" />
+          <Image src="/Image/ic_twitter.png" alt="twitter" width={20} height={20} />
         </Link>
         <Link href="https://www.youtube.com/">
-          <img src="/Image/ic_youtube.png" alt="youtube" />
+          <Image src="/Image/ic_youtube.png" alt="youtube" width={20} height={20} />
         </Link>
         <Link href="https://www.instagram.com/">
-          <img src="/Image/ic_instagram.png" alt="instagram" />
+          <Image src="/Image/ic_instagram.png" alt="instagram" width={20} height={20} />
         </Link>
       </div>
     </footer>

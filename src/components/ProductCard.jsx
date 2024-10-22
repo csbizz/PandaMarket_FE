@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import { priceFunc } from '../utils/utils.js';
 import c from '../constants.js';
+import Image from 'next/image';
 
 const style = {
   card: css`
@@ -9,9 +10,10 @@ const style = {
     gap: 1.6rem;
     grid-template-rows: 1fr auto;
 
-    img {
+    .imageWrapper {
       width: 22.1rem;
       aspect-ratio: 1/1;
+      position: relative;
 
       border-radius: 16px;
 
@@ -67,7 +69,9 @@ function ProductCard({ item, type }) {
 
   return (
     <div id="productCard" css={style.card}>
-      <img src={imgUrl} alt={name} className={`${type}`} />
+      <div className="imageWrapper">
+        <Image fill src={imgUrl} alt={name} className={`${type}`} />
+      </div>
       <div css={style.info}>
         <h5 css={style.title}>{name}</h5>
         <p css={style.price}>{priceString}원</p>
