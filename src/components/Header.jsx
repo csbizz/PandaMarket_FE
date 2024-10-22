@@ -65,7 +65,7 @@ function Header() {
         />
       </Link>
       <nav css={style.topNav}>
-        <Link href="/free" style={firstPath === 'free' ? { color: '#3692ff' } : {}}>
+        <Link href="/articles" style={firstPath === 'articles' ? { color: '#3692ff' } : {}}>
           자유게시판
         </Link>
         <Link href="/items" style={firstPath === 'items' ? { color: '#3692ff' } : {}}>
