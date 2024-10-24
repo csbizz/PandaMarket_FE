@@ -112,6 +112,10 @@ const style = {
       display: flex;
       flex-direction: column;
       gap: 2.4rem;
+
+      #noComment {
+        margin: 0 auto;
+      }
     }
   `,
   returnButton: css`
@@ -146,6 +150,7 @@ function ModifyButton() {
 
 export default function ArticleDetail() {
   const [commentObj, setCommentObj] = useState({ ...c.EMPTY_INPUT_OBJ, name: 'comment', type: 'text' });
+  const [isEmpty, setIsEmpty] = useState(false);
 
   return (
     <div id="articleDetailPage" css={style.articleDetailPage}>
@@ -186,6 +191,7 @@ export default function ArticleDetail() {
         </form>
 
         <div id="commentsList">
+          {isEmpty && <Image id="noComment" src="/Image/img_no_comments.png" alt="no comment Image" width={151} height={208} />}
           <Comment ModifyButton={<ModifyButton />} />
           <Comment ModifyButton={<ModifyButton />} />
           <Comment ModifyButton={<ModifyButton />} />
