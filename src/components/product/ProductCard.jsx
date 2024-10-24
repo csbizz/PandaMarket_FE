@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { priceFunc } from '../utils/utils.js';
-import c from '../utils/constants.js';
+import { priceFunc } from '@/src/utils/utils.js';
+import c from '@/src/utils/constants.js';
 import Image from 'next/image';
 
 const style = {

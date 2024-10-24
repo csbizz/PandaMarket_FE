@@ -52,7 +52,7 @@ function DropdownButton() {
   );
 }
 
-export default function SortOrderSelect({}) {
+export default function SortOrderSelect() {
   return (
     <div id="sortOrderSelect">
       <DropdownMenu DropdownButton={<DropdownButton />} list={c.SORT_ORDER} dictionary={c.SORT_ORDER_MSG} />

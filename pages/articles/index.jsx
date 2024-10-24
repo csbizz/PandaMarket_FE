@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import BestArticles from '@/src/components/BestArticles';
-import Articles from '@/src/components/Articles';
+import BestArticles from '@/src/components/article/BestArticles';
+import Articles from '@/src/components/article/Articles';
 import { css } from '@emotion/react';
+import DropdownProvider from '@/src/contexts/DropdownContext';
 
 const style = {
   freeBoard: css`
@@ -25,7 +26,9 @@ export default function FreeBoard() {
         <BestArticles />
       </div>
       <div id="articlesWrapper" css={style.articlesWrapper}>
-        <Articles />
+        <DropdownProvider>
+          <Articles />
+        </DropdownProvider>
       </div>
     </div>
   );

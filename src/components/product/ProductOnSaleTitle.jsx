@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import SortOrderSelect from './SortOrderSelect.jsx';
-import { useViewport } from '../contexts/ViewportContext.jsx';
-import c from '../utils/constants.js';
+import { useViewport } from '../../contexts/ViewportContext.jsx';
+import c from '../../utils/constants.js';
 import Link from 'next/link';
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar.jsx';
+import SortOrderSelect from '../SortOrderSelect';
 
 const style = {
   productOnSaleTitle: css`
@@ -77,21 +77,19 @@ export default function ProductOnSaleTitle({ onSearch }) {
     </div>
   );
 
-  const sortOrderSelect = <SortOrderSelect />;
-
   return viewport === c.VIEWPORT.MOBILE ? (
     <div css={style.productOnSaleTitle}>
       <h2>판매 중인 상품</h2>
       {registBtn}
       {searchBar}
-      {sortOrderSelect}
+      {<SortOrderSelect />}
     </div>
   ) : (
     <div css={style.productOnSaleTitle}>
       <h2>판매 중인 상품</h2>
       {searchBar}
       {registBtn}
-      {sortOrderSelect}
+      {<SortOrderSelect />}
     </div>
   );
 }

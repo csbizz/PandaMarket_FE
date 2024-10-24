@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useEffect, useState } from 'react';
-import TagButton from '@/src/components/TagButton.jsx';
+import TagButton from '@/src/components/product/TagButton.jsx';
 import useValidation from '@/src/hooks/useValidation.js';
 import c from '@/src/utils/constants.js';
 import Input from '@/src/components/Input';

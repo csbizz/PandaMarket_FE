@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useEffect, useState } from 'react';
-import { getProducts } from '../utils/api.js';
-import useAsync from '../hooks/useAsync.js';
-import { useViewport } from '../contexts/ViewportContext.jsx';
+import { getProducts } from '@/src/utils/api.js';
+import useAsync from '@/src/hooks/useAsync.js';
+import { useViewport } from '@/src/contexts/ViewportContext.jsx';
 import ProductCard from './ProductCard.jsx';
-import c from '../utils/constants.js';
+import c from '@/src/utils/constants.js';
 
 const style = {
   bestProductsTitle: css`

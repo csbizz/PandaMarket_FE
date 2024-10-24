@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import BestProducts from '@/src/components/BestProducts';
-import ProductsOnSale from '@/src/components/ProductsOnSale.jsx';
+import BestProducts from '@/src/components/product/BestProducts';
+import ProductsOnSale from '@/src/components/product/ProductsOnSale.jsx';
 import { useIsLoading } from '@/src/contexts/PendingContext.jsx';
 import { useError } from '@/src/contexts/ErrorContext.jsx';
 import Modal from '@/src/components/Modal.jsx';
