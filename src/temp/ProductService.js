@@ -2,14 +2,14 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://sprint-mission-api.vercel.app/products',
-  timeout: 5000
+  timeout: 5000,
 });
 
 instance.interceptors.response.use(
-  (res) => res,
-  (err) => {
+  res => res,
+  err => {
     throw new Error(err.response.status + ' ' + err.response.statusText);
-  }
+  },
 );
 
 function getRequest(url, params) {
@@ -62,10 +62,4 @@ async function deleteProduct(id) {
   return res.status;
 }
 
-export {
-  getProductList,
-  getProduct,
-  createProduct,
-  patchProduct,
-  deleteProduct
-};
+export { getProductList, getProduct, createProduct, patchProduct, deleteProduct };

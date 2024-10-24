@@ -15,6 +15,7 @@
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createCache from '@emotion/cache';
+import React from 'react';
 
 export async function getInitialProps(ctx) {
   const originalRenderPage = ctx.renderPage;

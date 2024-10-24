@@ -10,8 +10,7 @@ export default function useValidation() {
       case 'tag':
         return tagValidation(value);
       default:
-        const errMsg = 'Invalid input name';
-        return errMsg;
+        return 'Invalid input name';
     }
   };
 

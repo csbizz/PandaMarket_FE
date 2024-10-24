@@ -18,31 +18,26 @@ async function fetchData({ url: requestUrl, method, body = {}, params = {}, opti
   }
 
   let res;
-  try {
-    switch (method) {
-      case HTTP_METHODS.GET:
-      case HTTP_METHODS.DELETE:
-        res = await fetch(url, { method });
-        break;
-      case HTTP_METHODS.POST:
-      case HTTP_METHODS.PATCH:
-      case HTTP_METHODS.PUT:
-        const reqBody = options?.headers['Content-Type'] === 'application/json' ? JSON.stringify(body) : body;
-        res = await fetch(url, {
-          method,
-          body: reqBody,
-        });
-        break;
-    }
-
-    if (!res.ok) throw new Error('Failed to fetch data');
-    // DELETE 작업시 body가 비어있으면 리턴
-    if (res.status === 204 && isEmpty(res.body)) return res.status;
-
-    return await res.json();
-  } catch (err) {
-    throw err;
+  switch (method) {
+    case HTTP_METHODS.GET:
+    case HTTP_METHODS.DELETE:
+      res = await fetch(url, { method });
+      break;
+    case HTTP_METHODS.POST:
+    case HTTP_METHODS.PATCH:
+    case HTTP_METHODS.PUT:
+      res = await fetch(url, {
+        method,
+        body: options?.headers['Content-Type'] === 'application/json' ? JSON.stringify(body) : body,
+      });
+      break;
   }
+
+  if (!res.ok) throw new Error('Failed to fetch data');
+  // DELETE 작업시 body가 비어있으면 리턴
+  if (res.status === 204 && isEmpty(res.body)) return res.status;
+
+  return await res.json();
 }
 
 export async function fetchGet(url, params, options) {

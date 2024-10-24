@@ -9,18 +9,15 @@ const showPW = document.querySelectorAll('.label-wrap img');
 let idChk = false;
 let pwChk = false;
 
-inputId.addEventListener('focusin', (e) => e.target.classList.remove('error'));
-inputId.addEventListener('focusout', (e) => {
+inputId.addEventListener('focusin', e => e.target.classList.remove('error'));
+inputId.addEventListener('focusout', e => {
   const errorMsg = e.target.parentElement.querySelector('.js-error-msg');
 
   if (!verification.verifyId(e.target.value)) {
     idChk = false;
     e.target.classList.add('error');
 
-    errorMsg.textContent =
-      e.target.textLength === 0
-        ? '이메일을 입력해주세요.'
-        : '잘못된 이메일 형식입니다';
+    errorMsg.textContent = e.target.textLength === 0 ? '이메일을 입력해주세요.' : '잘못된 이메일 형식입니다';
   } else {
     idChk = true;
 
@@ -30,10 +27,9 @@ inputId.addEventListener('focusout', (e) => {
   loginBtn.disabled = !(idChk && pwChk);
 });
 
-inputPw.addEventListener('focusin', (e) => e.target.classList.remove('error'));
-inputPw.addEventListener('focusout', (e) => {
-  const errorMsg =
-    e.target.parentElement.parentElement.querySelector('.js-error-msg');
+inputPw.addEventListener('focusin', e => e.target.classList.remove('error'));
+inputPw.addEventListener('focusout', e => {
+  const errorMsg = e.target.parentElement.parentElement.querySelector('.js-error-msg');
 
   if (e.target.textLength === 0) {
     pwChk = false;
@@ -54,7 +50,7 @@ inputPw.addEventListener('focusout', (e) => {
   loginBtn.disabled = !(idChk && pwChk);
 });
 
-loginBtn.addEventListener('click', (e) => {
+loginBtn.addEventListener('click', e => {
   if (!verification.verifyPw(inputId.value, inputPw.value)) {
     modal.classList.remove('off');
   } else {
@@ -62,22 +58,18 @@ loginBtn.addEventListener('click', (e) => {
   }
 });
 
-modal.querySelector('.button').addEventListener('click', (e) => {
+modal.querySelector('.button').addEventListener('click', e => {
   modal.classList.add('off');
 });
 
 for (let eye of showPW) {
-  eye.addEventListener('click', (e) => {
+  eye.addEventListener('click', e => {
     if (e.target.classList.contains('eye')) {
       e.target.src = '../src/Image/btn_visibility_off_24px.png';
-      e.target.parentElement
-        .querySelector('input')
-        .setAttribute('type', 'password');
+      e.target.parentElement.querySelector('input').setAttribute('type', 'password');
     } else {
       e.target.src = '../src/Image/btn_visibility_on_24px.png';
-      e.target.parentElement
-        .querySelector('input')
-        .setAttribute('type', 'text');
+      e.target.parentElement.querySelector('input').setAttribute('type', 'text');
     }
 
     e.target.classList.toggle('eye');
