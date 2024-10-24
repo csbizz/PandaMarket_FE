@@ -12,11 +12,19 @@ export default class CONSTANTS {
   });
   static SORT_ORDER = Object.freeze({
     RECENT: 'recent',
-    // FAVORITE: 'favorite',
+    FAVORITE: 'favorite',
   });
   static SORT_ORDER_MSG = Object.freeze({
     [this.SORT_ORDER.RECENT]: '최신순',
-    // [this.SORT_ORDER.FAVORITE]: '좋아요순',
+    [this.SORT_ORDER.FAVORITE]: '좋아요순',
+  });
+  static MODIFY = Object.freeze({
+    EDIT: 'edit',
+    DELETE: 'delete',
+  });
+  static MODIFY_MSG = Object.freeze({
+    [this.MODIFY.EDIT]: '수정하기',
+    [this.SORT_ORDER.FAVORITE]: '삭제하기',
   });
   static VIEWPORT = Object.freeze({
     PC: 'PC',

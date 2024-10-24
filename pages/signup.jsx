@@ -25,6 +25,7 @@ export default function SignupPage() {
             회원가입
           </button>
         </form>
+
         <section className="sns-login">
           <span>간편 로그인하기</span>
           <div>
@@ -36,6 +37,7 @@ export default function SignupPage() {
             </Link>
           </div>
         </section>
+
         <section className="footer-link">
           <p>
             이미 회원이신가요? <Link href="/login">로그인</Link>

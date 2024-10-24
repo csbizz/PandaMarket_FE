@@ -160,6 +160,7 @@ export default function LandingPage() {
           </Link>
         </div>
       </section>
+
       <section css={style.mBody}>
         <div css={style.card}>
           <div className="imageWrapper">
@@ -179,6 +180,7 @@ export default function LandingPage() {
             </p>
           </div>
         </div>
+
         <div css={style.card} className="reverse">
           <div className="imageWrapper">
             <Image fill src="/Image/Img_home_02.png" alt="Search" />
@@ -197,6 +199,7 @@ export default function LandingPage() {
             </p>
           </div>
         </div>
+
         <div css={style.card}>
           <div className="imageWrapper">
             <Image fill src="/Image/Img_home_03.png" alt="Register" />
@@ -216,6 +219,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
       <section css={style.banner} id={'bottomBanner'}>
         <div css={style.mBody} className="banner">
           <h1 css={style.h1}>

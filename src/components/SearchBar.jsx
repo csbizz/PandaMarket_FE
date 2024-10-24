@@ -61,7 +61,7 @@ export default function SearchBar({ onSearch }) {
   return (
     <div id="searchBar" css={style.searchBar}>
       <label htmlFor="search">
-        <Image src="/Image/ic_search.svg" alt="searchIcon" width={24} height={24} />
+        <Image src="/Image/ic_search.png" alt="searchIcon" width={24} height={24} />
       </label>
       <input
         id="search"

@@ -145,6 +145,7 @@ export default function RegistrationPage() {
             등록
           </button>
         </div>
+
         <div css={style.info}>
           <Input inputObj={nameObj} label={'상품명'} placeholder={'상품명을 입력해주세요'} onBlur={handleValidation} />
           <Input

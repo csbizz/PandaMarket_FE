@@ -6,6 +6,7 @@ import { useIsLoading } from '@/src/contexts/PendingContext.jsx';
 import { useError } from '@/src/contexts/ErrorContext.jsx';
 import Modal from '@/src/components/Modal.jsx';
 import c from '@/src/utils/constants.js';
+import DropdownProvider from '@/src/contexts/DropdownContext';
 
 const style = {
   itemsPage: css`
@@ -39,7 +40,9 @@ export default function ItemsPage() {
     <>
       <div id="items" css={style.itemsPage}>
         {/* <div css={style.bestProductWrapper}><BestProducts /></div> */}
-        <ProductsOnSale />
+        <DropdownProvider>
+          <ProductsOnSale />
+        </DropdownProvider>
       </div>
       {isLoading && <Modal message="로딩 중입니다." noButton />}
       {err && <Modal message={err.message} />}

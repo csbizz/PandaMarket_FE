@@ -28,9 +28,8 @@ const style = {
   `,
 };
 
-export default function Input({ inputObj, label, placeholder, onBlur, onKeyDown, textarea = false }) {
+export default function Input({ inputObj, label, placeholder, onBlur, onKeyDown, textarea = false, comment = false }) {
   const { value: inputValue, name, type, errMsg } = inputObj;
-  const classNames = errMsg ? 'input error' : 'input';
   const [value, setValue] = useState(inputValue);
 
   const handleChange = e => {
@@ -54,7 +53,7 @@ export default function Input({ inputObj, label, placeholder, onBlur, onKeyDown,
         name={name}
         type={type}
         placeholder={placeholder}
-        className={classNames}
+        className={`input ${errMsg ? 'error' : ''} ${comment ? 'comment' : ''}`}
         value={value}
         onChange={handleChange}
         onBlur={onBlur ? handleBlur : null}
@@ -72,7 +71,7 @@ export default function Input({ inputObj, label, placeholder, onBlur, onKeyDown,
         name={name}
         type={type}
         placeholder={placeholder}
-        className={classNames}
+        className={`input ${errMsg ? 'error' : ''}`}
         value={value}
         onChange={handleChange}
         onBlur={onBlur ? handleBlur : null}

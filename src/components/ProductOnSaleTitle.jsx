@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from 'react';
 import SortOrderSelect from './SortOrderSelect.jsx';
 import { useViewport } from '../contexts/ViewportContext.jsx';
 import c from '../utils/constants.js';
@@ -62,7 +61,7 @@ const style = {
   `,
 };
 
-export default function ProductOnSaleTitle({ onSearch, onSortOrderChange }) {
+export default function ProductOnSaleTitle({ onSearch }) {
   const viewport = useViewport();
 
   const registBtn = (
@@ -78,7 +77,7 @@ export default function ProductOnSaleTitle({ onSearch, onSortOrderChange }) {
     </div>
   );
 
-  const sortOrderSelect = <SortOrderSelect onChange={onSortOrderChange} />;
+  const sortOrderSelect = <SortOrderSelect />;
 
   return viewport === c.VIEWPORT.MOBILE ? (
     <div css={style.productOnSaleTitle}>

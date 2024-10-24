@@ -36,4 +36,8 @@ textarea.input {
   &.error {
     outline: thin solid var(--error-red);
   }
+
+  &.comment {
+    height: 12rem;
+  }
 }

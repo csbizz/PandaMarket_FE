@@ -8,6 +8,7 @@ import PaginationBar from './PaginationBar.jsx';
 import ProductOnSaleTitle from './ProductOnSaleTitle.jsx';
 import { useViewport } from '../contexts/ViewportContext.jsx';
 import c from '../utils/constants.js';
+import { useDropdown } from '../contexts/DropdownContext';
 
 const style = {
   productOnSale: css`
@@ -57,15 +58,14 @@ const style = {
 
 export default function ProductsOnSale() {
   const viewport = useViewport();
+  const { item: sortOrder = c.SORT_ORDER.RECENT } = useDropdown();
   const [items, setItems] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [now, setNow] = useState(1);
-  const [sortOrder, setSortOrder] = useState(c.SORT_ORDER.RECENT);
   const [searchQuery, setSearchQuery] = useState('');
   const getProductsAsync = useAsync(getProducts);
 
   const handleSearch = query => setSearchQuery(query);
-  const handleSortOrderChange = order => setSortOrder(order);
   const handlePageChange = useCallback(p => setNow(p), []);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function ProductsOnSale() {
 
   return (
     <section id="productOnSale" css={style.productOnSale}>
-      <ProductOnSaleTitle onSearch={handleSearch} onSortOrderChange={handleSortOrderChange} />
+      <ProductOnSaleTitle onSearch={handleSearch} />
       <div css={style.productOnSaleItems}>
         {items.map(item => {
           return <ProductCard type="onSale" item={item} key={item.id} />;

@@ -71,7 +71,7 @@ export default function ProductCard({ item, type }) {
         <h5 css={style.title}>{name}</h5>
         <p css={style.price}>{priceString}원</p>
         <p css={style.favorite}>
-          <Image src="/Image/ic_heart.svg" alt="favorite heart" width={16} height={16} /> {favoriteCount}
+          <Image src="/Image/ic_heart.png" alt="favorite heart" width={16} height={16} /> {favoriteCount}
         </p>
       </div>
     </div>

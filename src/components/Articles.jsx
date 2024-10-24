@@ -63,7 +63,7 @@ function Article() {
           <span className="date">2024. 04. 16</span>
         </div>
         <div>
-          <Image src="/Image/ic_heart.svg" alt="favorite heart" width={16} height={16} />
+          <Image src="/Image/ic_heart.png" alt="favorite heart" width={16} height={16} />
           <span className="heart">9999+</span>
         </div>
       </div>

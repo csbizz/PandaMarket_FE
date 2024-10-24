@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import c from '@/src/utils/constants';
+import { useEffect, useRef } from 'react';
+import { useDropdown } from '../contexts/DropdownContext';
 
 const style = {
   dropdownMenu: css`
@@ -19,6 +21,7 @@ const style = {
       cursor: pointer;
       border: 1px solid var(--gray-200);
       border-bottom: 0;
+      height: 4.2rem;
 
       background-color: #ffffff;
       color: var(--gray-800);
@@ -26,7 +29,7 @@ const style = {
       font-weight: 400;
       line-height: 2.6rem;
 
-      &:first-child {
+      &:first-of-type {
         border-top-left-radius: 1.2rem;
         border-top-right-radius: 1.2rem;
       }
@@ -50,16 +53,39 @@ const style = {
   `,
 };
 
-export default function DropdownMenu({ list, dictionary, onClick }) {
+export default function DropdownMenu({ DropdownButton, list, dictionary }) {
+  const dropdownRef = useRef();
+  const { dropdownOpen, setDropdownOpen, setItem: setSortOrder } = useDropdown();
+
+  const handleClick = item => {
+    setDropdownOpen(false);
+    setSortOrder(item);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = e => {
+      // NOTE Ref의 current에 담긴 엘리먼트가 아닌 곳(바깥)을 클릭 시 드롭다운 메뉴 닫힘
+      if (dropdownOpen && !dropdownRef.current.contains(e.target)) setDropdownOpen(false);
+    };
+    document.addEventListener('click', handleClickOutside);
+
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [dropdownOpen]);
+
   return (
-    <ul id="dropdownMenu" css={style.dropdownMenu}>
-      {Object.values(list).map(item => {
-        return (
-          <li onClick={() => onClick(item)} key={item}>
-            {dictionary[item]}
-          </li>
-        );
-      })}
-    </ul>
+    <div className="dropdown" ref={dropdownRef}>
+      {DropdownButton}
+      {dropdownOpen && (
+        <ul className="dropdown-menu" css={style.dropdownMenu}>
+          {Object.values(list).map(item => {
+            return (
+              <li onClick={() => handleClick(item)} key={item}>
+                {dictionary[item]}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
   );
 }
