@@ -76,6 +76,7 @@ export default [
       'guard-for-in': 'off',
       'no-underscore-dangle': 'off',
       camelcase: 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
       // NOTE JS/TS 관련 확장자만 생략한다.
       'import/extensions': ['error', { js: 'never', jsx: 'never', ts: 'never', tsx: 'never', css: 'always' }],
       'import/no-duplicates': ['warn', { 'prefer-inline': true, considerQueryString: true }],

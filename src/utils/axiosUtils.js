@@ -36,6 +36,7 @@ async function axiosData({ base, url, method, data = {}, params = {}, headers = 
     baseURL: base,
     headers,
     validateStatus: status => 200 <= status && status < 300, // res.ok와 동일한 조건
+    withCredentials: true,
   });
 
   // NOTE 요청 인터셉터

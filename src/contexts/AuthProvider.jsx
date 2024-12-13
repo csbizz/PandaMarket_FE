@@ -54,7 +54,7 @@ export default function AuthProvider({ children }) {
     const accessToken = localStorage.getItem('accessToken');
     // NOTE accessToken의 유효기간 검사 후 만료시
     if (accessToken && isTokenExpired(accessToken)) {
-      const newAccessToken = await refreshNewAccessToken();
+      const newAccessToken = await refreshTokenAsync();
       if (newAccessToken) {
         localStorage.setItem('accessToken', newAccessToken);
         return true;
@@ -64,22 +64,8 @@ export default function AuthProvider({ children }) {
       logout();
       return false;
     }
-    // NOTE accessToken이 없음 = 로그아웃 상태
-    if (!accessToken) {
-      const newAccessToken = await refreshNewAccessToken();
-      if (newAccessToken) return localStorage.setItem('accessToken', newAccessToken);
-    }
 
     return true;
-  };
-  const refreshNewAccessToken = async () => {
-    refreshTokenAsync();
-    // const refreshToken = localStorage.getItem('refreshToken');
-    // if (!refreshToken || isTokenExpired(refreshToken)) return null;
-
-    // const refreshResult = await refreshTokenApi({ refreshToken });
-    // localStorage.setItem('accessToken', refreshResult.accessToken);
-    // return refreshResult.accessToken;
   };
 
   useEffect(() => {

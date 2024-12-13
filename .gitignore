@@ -4,6 +4,8 @@
 .vscode
 test.js
 *.http
+.bashrc
+.env
 
 # dependencies
 /node_modules
